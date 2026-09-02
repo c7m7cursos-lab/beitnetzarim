@@ -15,6 +15,43 @@ tipografia Playfair Display + Manrope, menu em tela cheia e revelação suave ao
 | `logo-320.png` | Versão usada como marca d'água do hero |
 | `logo-96.png` | Versão usada no cabeçalho e no rodapé |
 | `favicon.png` | Ícone da aba, 48px |
+| `tora.html` / `tora.js` | Página Torá Online — parashá da semana e leitura livre |
+| `calendario.html` / `calendario.js` | Página Calendário Judaico — horários de Shabat e agenda do mês |
+
+## Torá Online e Calendário Judaico
+
+Duas páginas à parte, no mesmo estilo visual, que buscam dados ao vivo em APIs públicas
+(sem backend próprio — tudo roda no navegador de quem visita):
+
+- **Hebraico** — Sefaria.org, texto *Miqra according to the Masorah* (domínio público /
+  CC BY-SA), busca por `https://www.sefaria.org/api/texts/{Livro}.{capítulo}`.
+- **Português** — João Ferreira de Almeida, edição de domínio público, via
+  `https://bible-api.com/{livro}+{capítulo}?translation=almeida`. **Não é a mesma
+  tradução do beit.org.br** — a deles é um texto próprio e autoral, que não pode ser
+  reproduzido aqui.
+- **Parashá, aliyot e calendário** — Hebcal.com (`hebcal.com/leyning`,
+  `hebcal.com/shabbat`, `hebcal.com/hebcal`).
+
+Pontos que exigiram tratamento especial:
+
+- **Numeração de versículos divergente** — a tradição judaica (hebraico) e a cristã
+  (a maioria das traduções em português, incluindo a Almeida) numeram os versículos de
+  forma diferente em alguns capítulos, sobretudo em Deuteronômio 29 e Levítico 5–6. O
+  leitor detecta automaticamente quando a contagem não bate e mostra só o hebraico
+  nesses capítulos, com um aviso — para nunca parear a linha errada.
+- **bible-api.com tem limite de requisições** — pedir um livro inteiro dispara dezenas
+  de chamadas; elas passam por uma fila única com espera entre uma e outra, e cada
+  capítulo tem nova tentativa automática e um botão "Tentar novamente" se ainda assim
+  falhar.
+- **Busca de cidade sem CORS** — o endpoint de autocomplete de cidades do Hebcal
+  (`hebcal.com/complete`) não libera chamadas de navegador. Por isso o seletor de
+  cidade em `calendario.js` é uma lista fixa de 37 capitais e cidades grandes, com o
+  `geonameid` de cada uma já resolvido — para adicionar uma cidade, busque o id em
+  `hebcal.com/complete?q=NomeDaCidade` (funciona por `curl`, só não pelo navegador) e
+  acrescente ao array `CIDADES`.
+- **Nomes de feriados em inglês** — a API do Hebcal não traduz títulos nem os textos
+  explicativos (`memo`). Os títulos são traduzidos por um dicionário próprio
+  (`TRADUCOES` em `calendario.js`); o `memo`, sempre em inglês, não é exibido.
 
 ## Ver localmente
 

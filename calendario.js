@@ -9,6 +9,7 @@
   // não libera CORS para chamadas do navegador, então a lista fica pronta
   // aqui — sem precisar de rede para preencher o seletor.
   var CIDADES = [
+    { id: 3450554, nome: 'Salvador', uf: 'BA' },
     { id: 3471872, nome: 'Aracaju', uf: 'SE' },
     { id: 3471039, nome: 'Balneário Camboriú', uf: 'SC' },
     { id: 3405870, nome: 'Belém', uf: 'PA' },
@@ -38,7 +39,6 @@
     { id: 3451328, nome: 'Ribeirão Preto', uf: 'SP' },
     { id: 3662574, nome: 'Rio Branco', uf: 'AC' },
     { id: 3451190, nome: 'Rio de Janeiro', uf: 'RJ' },
-    { id: 3450554, nome: 'Salvador', uf: 'BA' },
     { id: 3449433, nome: 'Santos', uf: 'SP' },
     { id: 3388368, nome: 'São Luís', uf: 'MA' },
     { id: 3448439, nome: 'São Paulo', uf: 'SP' },
@@ -47,7 +47,7 @@
     { id: 3445831, nome: 'Uberlândia', uf: 'MG' },
     { id: 3444924, nome: 'Vitória', uf: 'ES' }
   ];
-  var CIDADE_PADRAO = 3448439; // São Paulo
+  var CIDADE_PADRAO = 3450554; // Salvador, BA
 
   var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho',
     'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];

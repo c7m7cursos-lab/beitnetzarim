@@ -99,13 +99,23 @@
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   }
 
-  /* --- janelas das festas (moadim) --- */
-  var moedAberto = null;
+  /* --- janelas em <dialog> (festas do moadim e "Ver mais" do líder) --- */
+  var modalAberto = null;
 
-  function fecharMoed() {
-    if (!moedAberto) return;
-    var d = moedAberto;
-    moedAberto = null;
+  function abrirModal(dialogo) {
+    if (!dialogo) return;
+    if (typeof dialogo.showModal === 'function') dialogo.showModal();
+    else dialogo.setAttribute('open', ''); // navegadores sem <dialog>
+    modalAberto = dialogo;
+    body.classList.add('no-scroll');
+    var corpo = dialogo.querySelector('.moed-modal__body');
+    if (corpo) corpo.scrollTop = 0;
+  }
+
+  function fecharModal() {
+    if (!modalAberto) return;
+    var d = modalAberto;
+    modalAberto = null;
     if (typeof d.close === 'function' && d.open) d.close();
     else d.removeAttribute('open');
     body.classList.remove('no-scroll');
@@ -113,20 +123,20 @@
 
   document.querySelectorAll('.moed[data-moed]').forEach(function (botao) {
     botao.addEventListener('click', function () {
-      var dialogo = document.getElementById('moed-' + botao.dataset.moed);
-      if (!dialogo) return;
-      if (typeof dialogo.showModal === 'function') dialogo.showModal();
-      else dialogo.setAttribute('open', ''); // navegadores sem <dialog>
-      moedAberto = dialogo;
-      body.classList.add('no-scroll');
-      var corpo = dialogo.querySelector('.moed-modal__body');
-      if (corpo) corpo.scrollTop = 0;
+      abrirModal(document.getElementById('moed-' + botao.dataset.moed));
     });
   });
 
+  var liderBtn = document.getElementById('liderBtn');
+  if (liderBtn) {
+    liderBtn.addEventListener('click', function () {
+      abrirModal(document.getElementById('lider-modal'));
+    });
+  }
+
   document.querySelectorAll('.moed-modal').forEach(function (dialogo) {
     dialogo.querySelectorAll('.moed-modal__close').forEach(function (x) {
-      x.addEventListener('click', fecharMoed);
+      x.addEventListener('click', fecharModal);
     });
     // clique fora do conteúdo (na área do backdrop) fecha
     dialogo.addEventListener('click', function (e) {
@@ -134,14 +144,14 @@
       var r = dialogo.getBoundingClientRect();
       var fora = e.clientY < r.top || e.clientY > r.bottom ||
                  e.clientX < r.left || e.clientX > r.right;
-      if (fora) fecharMoed();
+      if (fora) fecharModal();
     });
     dialogo.addEventListener('close', function () {
-      moedAberto = null;
+      modalAberto = null;
       body.classList.remove('no-scroll');
     });
     dialogo.addEventListener('cancel', function () { // Esc
-      moedAberto = null;
+      modalAberto = null;
       body.classList.remove('no-scroll');
     });
   });

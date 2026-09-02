@@ -207,6 +207,47 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .plate .hebrew{font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,3.6rem);color:var(--gold);line-height:1.2}
 .plate .translit{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 
+/* --- nosso líder --- */
+.leader{align-items:start}
+.leader__photo{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(199,162,87,.1),rgba(19,18,16,.5));
+}
+.leader__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.leader__photo--vazio img{display:none}
+.leader__placeholder{
+  position:absolute;inset:0;display:none;
+  flex-direction:column;align-items:center;justify-content:center;gap:.9rem;
+  color:var(--muted);text-align:center;
+}
+.leader__photo--vazio .leader__placeholder{display:flex}
+.leader__placeholder svg{width:52px;height:52px;fill:currentColor;opacity:.5}
+.leader__placeholder span{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase}
+.leader__badge{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;
+  padding:1.6rem 1.6rem 1.4rem;
+  background:linear-gradient(0deg,rgba(19,18,16,.94),rgba(19,18,16,.55) 65%,transparent);
+  display:grid;gap:.15rem;
+}
+.leader__badge-name{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(235,235,235,.75)}
+.leader__badge-role{font-family:var(--serif);font-weight:400;font-size:1.5rem;color:var(--cream)}
+.leader__badge-sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+
+/* janela "Ver mais" do líder: mesma base do moed-modal, com foto no topo */
+.lider-modal{padding:0;overflow:hidden}
+.lider-modal__close{
+  position:absolute;top:1.1rem;right:1.1rem;z-index:3;
+}
+.lider-modal__photo{
+  position:relative;width:100%;aspect-ratio:16/10;
+  background:linear-gradient(160deg,rgba(199,162,87,.14),rgba(19,18,16,.5));
+  flex:none;
+}
+.lider-modal__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.lider-modal__photo.leader__photo--vazio img{display:none}
+.lider-modal .moed-modal__body{padding-top:1.8rem}
+
 /* --- pilares --- */
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:3.4rem}
 .card{
@@ -489,6 +530,8 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
   .moed-modal{width:100%;max-height:92vh;border-radius:0}
   .moed-modal__head{padding:1.6rem 1.2rem 1rem;padding-right:4rem}
   .moed-modal__body{padding:1.3rem 1.2rem 2rem}
+  .lider-modal__photo{aspect-ratio:4/5}
+  .leader__photo{aspect-ratio:1/1}
   .creed__item summary{gap:.9rem;padding:1.3rem .2rem}
   .creed__num{min-width:1.8rem}
   .creed__body{padding-left:0;padding-bottom:1.6rem}

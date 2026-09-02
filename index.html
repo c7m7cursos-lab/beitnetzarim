@@ -50,13 +50,14 @@
     <nav>
       <a href="#inicio"><span>01</span>Início</a>
       <a href="#quem-somos"><span>02</span>Quem Somos</a>
-      <a href="#pilares"><span>03</span>Nossos Pilares</a>
-      <a href="#emunatenu"><span>04</span>Nossa Fé</a>
-      <a href="#encontros"><span>05</span>Encontros</a>
-      <a href="#moadim"><span>06</span>Moadim</a>
-      <a href="#ensino"><span>07</span>Ensino</a>
-      <a href="#tzedaka"><span>08</span>Tzedaká</a>
-      <a href="#contato"><span>09</span>Contato</a>
+      <a href="#lideranca"><span>03</span>Nosso Líder</a>
+      <a href="#pilares"><span>04</span>Nossos Pilares</a>
+      <a href="#emunatenu"><span>05</span>Nossa Fé</a>
+      <a href="#encontros"><span>06</span>Encontros</a>
+      <a href="#moadim"><span>07</span>Moadim</a>
+      <a href="#ensino"><span>08</span>Ensino</a>
+      <a href="#tzedaka"><span>09</span>Tzedaká</a>
+      <a href="#contato"><span>10</span>Contato</a>
     </nav>
     <aside class="overlay__aside">
       <h4>Onde estamos</h4>
@@ -111,6 +112,70 @@
     </div>
   </div>
 </section>
+
+<hr class="rule">
+
+<!-- ==================== NOSSO LÍDER ====================
+     PARA PERSONALIZAR:
+     1. envie a foto do líder para a pasta do site com o nome "lider.jpg"
+        (retrato, de preferência na vertical) — enquanto o arquivo não existir,
+        aparece um retângulo com o ícone "Foto em breve" no lugar
+     2. troque "Nome do Líder" (3 lugares), "Presidente" e "RAV" pelo nome,
+        cargo e título reais
+     3. ajuste os dois parágrafos da bio conforme necessário -->
+<section id="lideranca">
+  <div class="wrap split leader">
+    <div class="leader__photo reveal">
+      <img src="lider.jpg" alt="Nome do Líder" loading="lazy"
+           onerror="this.closest('.leader__photo').classList.add('leader__photo--vazio')">
+      <div class="leader__placeholder" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.6-8 6v2h16v-2c0-3.4-3.6-6-8-6Z"/></svg>
+        <span>Foto em breve</span>
+      </div>
+      <div class="leader__badge">
+        <span class="leader__badge-name">Nome do Líder</span>
+        <strong class="leader__badge-role">Presidente</strong>
+        <span class="leader__badge-sub">RAV</span>
+      </div>
+    </div>
+    <div class="stack">
+      <p class="eyebrow reveal">Capítulo I</p>
+      <h2 class="reveal">Conheça Nosso Líder</h2>
+      <p class="lead reveal">Nome do Líder lidera a Congregação Yisraelita Beit Netzarim, dedicando-se
+        ao ensino da Torá e ao cuidado desta comunidade — trazendo à frente da casa uma trajetória
+        marcada por formação sólida, experiência de liderança e serviço.</p>
+      <div class="btn-row reveal">
+        <button class="btn" type="button" id="liderBtn" aria-haspopup="dialog">Ver mais</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="moed-modal lider-modal" id="lider-modal" aria-labelledby="t-lider">
+  <button class="moed-modal__close lider-modal__close" type="button" aria-label="Fechar">&times;</button>
+  <div class="lider-modal__photo">
+    <img src="lider.jpg" alt="" loading="lazy"
+         onerror="this.closest('.lider-modal__photo').classList.add('leader__photo--vazio')">
+    <div class="leader__placeholder" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.6-8 6v2h16v-2c0-3.4-3.6-6-8-6Z"/></svg>
+      <span>Foto em breve</span>
+    </div>
+    <div class="leader__badge">
+      <span class="leader__badge-name" id="t-lider">Nome do Líder</span>
+      <strong class="leader__badge-role">Presidente</strong>
+      <span class="leader__badge-sub">RAV</span>
+    </div>
+  </div>
+  <div class="moed-modal__body">
+    <p>Nome do Líder é bacharel em Direito e construiu uma trajetória sólida no mundo corporativo,
+      atuando como diretor comercial e executivo à frente de áreas estratégicas em empresas de
+      destaque, além de exercer o papel de conselheiro executivo, contribuindo com sua visão de
+      gestão e liderança para diferentes organizações.</p>
+    <p>Paralelamente à sua carreira profissional, consolidou sua atuação à frente da Congregação
+      Yisraelita Beit Netzarim, dedicando-se ao ensino da Torá, ao cuidado pastoral da comunidade e à
+      formação de uma geração que caminha nas raízes hebraicas da fé em Yeshua HaMashiach.</p>
+  </div>
+</dialog>
 
 <hr class="rule">
 

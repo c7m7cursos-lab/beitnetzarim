@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendário Judaico — Congregação Yisraelita Beit Netzarim</title>
+<meta name="description" content="O calendário judaico: horário de acendimento das velas e havdalá para a sua cidade, a parashá da semana e os próximos feriados e moadim.">
+<meta name="theme-color" content="#131210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calendário Judaico — Beit Netzarim">
+<meta property="og:description" content="Horários de Shabat para a sua cidade, a parashá da semana e o calendário do mês.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://beitnetzarim.com.br/calendario.html">
+<meta property="og:image" content="https://beitnetzarim.com.br/logo.png">
+<link rel="canonical" href="https://beitnetzarim.com.br/calendario.html">
+
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js-reveal');</script>
+</head>
+<body>
+
+<!-- ==================== CABEÇALHO ==================== -->
+<header class="site-header" id="header">
+  <a class="brand" href="index.html#inicio" aria-label="Beit Netzarim — início">
+    <img class="brand__mark" src="logo-96.png" alt="" width="96" height="96">
+    <span class="brand__text">
+      <small>Congregação Yisraelita</small>
+      <strong>Beit Netzarim</strong>
+    </span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="overlay">
+    <span class="label">Menu</span>
+    <span class="menu-btn__bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<!-- ==================== MENU ==================== -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <div class="overlay__inner">
+    <nav>
+      <a href="index.html#inicio"><span>01</span>Início</a>
+      <a href="index.html#quem-somos"><span>02</span>Quem Somos</a>
+      <a href="index.html#lideranca"><span>03</span>Nosso Líder</a>
+      <a href="index.html#pilares"><span>04</span>Nossos Pilares</a>
+      <a href="index.html#emunatenu"><span>05</span>Nossa Fé</a>
+      <a href="index.html#encontros"><span>06</span>Encontros</a>
+      <a href="index.html#moadim"><span>07</span>Moadim</a>
+      <a href="tora.html"><span>08</span>Torá Online</a>
+      <a href="calendario.html"><span>09</span>Calendário</a>
+      <a href="index.html#ensino"><span>10</span>Ensino</a>
+      <a href="index.html#tzedaka"><span>11</span>Tzedaká</a>
+      <a href="index.html#contato"><span>12</span>Contato</a>
+    </nav>
+    <aside class="overlay__aside">
+      <h4>Onde estamos</h4>
+      <p>Rua Exemplo, 000 — Bairro<br>Cidade / UF — CEP 00000-000</p>
+      <h4>Fale conosco</h4>
+      <p><a href="https://wa.me/5500000000000">(00) 00000-0000</a><br>
+         <a href="mailto:contato@beitnetzarim.com.br">contato@beitnetzarim.com.br</a></p>
+      <h4>Shabat</h4>
+      <p>Sexta-feira, ao pôr do sol — Kabalat Shabat<br>Sábado, 10h — Shacharit e Torá<br>Sábado, 15h — Minchá</p>
+    </aside>
+  </div>
+</div>
+
+<!-- ==================== INTRODUÇÃO ==================== -->
+<section class="hero hero--pagina" id="inicio">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Calendário Judaico</p>
+    <h1 class="reveal hero--pagina__titulo">O Próximo Shabat</h1>
+    <p class="lead reveal" style="max-width:56ch">Escolha sua cidade para ver o horário de acendimento das
+      velas e da havdalá, a parashá da semana e os próximos feriados do calendário hebraico.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ==================== LOCALIZAÇÃO + PRÓXIMO SHABAT ==================== -->
+<section id="proximo-shabat">
+  <div class="wrap">
+    <form class="local-form reveal" id="localForm">
+      <label>Cidade
+        <select id="localCidade" name="cidade"></select>
+      </label>
+    </form>
+
+    <div class="shabat-card reveal" id="shabatCard" aria-live="polite">
+      <p class="shabat-card__status">Buscando horários…</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ==================== CALENDÁRIO MENSAL ==================== -->
+<section id="calendario-mensal" class="light">
+  <div class="wrap">
+    <p class="eyebrow reveal">Calendário mensal</p>
+    <div class="mes-nav reveal">
+      <button class="mes-nav__seta" id="mesAnterior" type="button" aria-label="Mês anterior">&larr;</button>
+      <h2 id="mesTitulo">—</h2>
+      <button class="mes-nav__seta" id="mesProximo" type="button" aria-label="Próximo mês">&rarr;</button>
+    </div>
+
+    <div class="mes-lista" id="mesLista" aria-live="polite">
+      <p class="mes-lista__status">Carregando o calendário do mês…</p>
+    </div>
+  </div>
+</section>
+
+<section id="fonte-calendario">
+  <div class="wrap">
+    <p class="fonte-nota reveal">Horários, feriados e a divisão da parashá em aliyot:
+      <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a>. Os horários de vela e
+      havdalá seguem o fuso e a localização escolhidos e podem ter pequenas variações conforme o costume
+      local.</p>
+  </div>
+</section>
+
+<!-- ==================== RODAPÉ ==================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html#inicio">
+      <img class="brand__mark brand__mark--footer" src="logo-96.png" alt="" width="96" height="96" loading="lazy">
+      <span class="brand__text">
+        <small>Congregação Yisraelita</small>
+        <strong>Beit Netzarim</strong>
+      </span>
+    </a>
+    <div class="social">
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/channel/UC_2wBOGGuZ4y0qSCQz2NJFg" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" rel="noopener">Facebook</a>
+      <a href="https://wa.me/5500000000000" rel="noopener">WhatsApp</a>
+    </div>
+    <small>&copy; <span id="ano"></span> Congregação Yisraelita Beit Netzarim &middot; Todos os direitos reservados</small>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="calendario.js"></script>
+</body>
+</html>

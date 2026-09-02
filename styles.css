@@ -386,6 +386,22 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .light .plate .hebrew{color:var(--gold-dark)}
 .light .plate .translit{color:#7a7365}
 
+/* --- atalhos: Torá Online / Calendário --- */
+.ferramentas{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;
+  margin-top:clamp(3rem,7vw,4.5rem);
+}
+.ferramenta-card{
+  display:block;padding:1.8rem 2rem;
+  border:1px solid rgba(139,111,64,.22);background:rgba(255,255,255,.5);
+  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.ferramenta-card:hover{transform:translateY(-5px);border-color:var(--gold-dark);box-shadow:0 16px 36px rgba(92,74,42,.14)}
+.ferramenta-card__eyebrow{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);font-weight:600}
+.ferramenta-card h3{font-size:1.35rem;margin:.7rem 0 .6rem}
+.ferramenta-card p{font-size:.92rem;line-height:1.7;color:#5c574d;margin:0 0 1.1rem}
+.ferramenta-card__seta{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);font-weight:600}
+
 /* --- playlists de estudo --- */
 .playlists-head{
   display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;
@@ -457,6 +473,151 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .pl--vazio .pl__acao{color:#6b6558}
 .pl--vazio .pl__acao::after{content:"—"}
 
+/* --- páginas internas (Torá Online / Calendário) --- */
+.hero--pagina{min-height:auto;padding-top:9rem;padding-bottom:3.5rem}
+.hero--pagina__titulo{font-size:clamp(2.6rem,7vw,4.6rem);max-width:20ch;margin:1.4rem 0 1.4rem}
+
+/* --- parashá da semana --- */
+.parasha-card{
+  margin-top:2.6rem;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(199,162,87,.08),rgba(19,18,16,.4));
+  padding:clamp(1.6rem,4vw,2.6rem);
+}
+.parasha-card__status{margin:0;color:var(--muted)}
+.parasha-card__topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.4rem}
+.parasha-card__rotulo{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep)}
+.parasha-card__nome{font-size:clamp(1.6rem,4vw,2.3rem);margin:.6rem 0 .5rem;display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.parasha-card__he{font-size:.75em;color:var(--gold)}
+.parasha-card__ref{margin:0;color:var(--muted);font-size:.92rem}
+.parasha-card__haftara{margin:1.2rem 0 0;font-size:.9rem;color:rgba(235,235,235,.75)}
+.aliyah-pills{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:1.6rem}
+.aliyah-pills__label{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-right:.4rem}
+.aliyah-pill{
+  font-family:var(--sans);font-size:.78rem;color:var(--text);
+  background:rgba(199,162,87,.06);border:1px solid rgba(199,162,87,.25);border-radius:999px;
+  padding:.5rem 1rem;cursor:pointer;transition:background .3s ease,border-color .3s ease;
+  display:inline-flex;gap:.4rem;align-items:baseline;
+}
+.aliyah-pill b{color:var(--gold);font-weight:600}
+.aliyah-pill:hover{background:rgba(199,162,87,.14);border-color:var(--gold)}
+
+/* --- formulário de leitura livre --- */
+.estudo-form{
+  display:grid;grid-template-columns:1fr 1fr auto;gap:1.2rem;align-items:end;
+  margin-top:2.6rem;max-width:760px;
+}
+.estudo-form label{display:grid;gap:.5rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.light .estudo-form label{color:#7a7365}
+.estudo-form select{
+  font-family:var(--sans);font-size:1rem;color:var(--text);
+  background:rgba(255,255,255,.03);border:1px solid rgba(199,162,87,.2);
+  padding:.85rem 1rem;border-radius:2px;appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+  background-position:calc(100% - 1.3rem) center,calc(100% - 1rem) center;
+  background-size:6px 6px;background-repeat:no-repeat;
+  color:rgba(235,235,235,.6);
+}
+.light .estudo-form select{background:rgba(255,255,255,.6);color:#26241f;border-color:rgba(139,111,64,.28)}
+.estudo-form select:focus{outline:0;border-color:var(--gold)}
+
+/* --- leitor de versículos --- */
+.leitor{margin-top:1rem}
+.leitor__vazio{color:var(--muted);text-align:center;padding:2rem 0}
+.leitor__status{color:var(--muted);text-align:center;padding:2rem 0}
+.leitor__erro{color:var(--gold);text-align:center;padding:2rem 0}
+.leitor__titulo-bloco{margin-bottom:2.4rem}
+.leitor__titulo-bloco h2{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.leitor__titulo-bloco h2 .he{font-size:.7em;color:var(--gold)}
+.leitor__nota-maftir{font-size:.86rem;color:var(--gold-deep);margin-top:.6rem}
+.leitor__capitulo-wrap{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.leitor__capitulo-wrap:first-child{margin-top:0;padding-top:0;border-top:0}
+.leitor__cap-titulo{font-size:1.1rem;color:var(--gold-deep);margin:0 0 .6rem}
+.leitor__aviso-divergencia{font-size:.82rem;color:var(--muted);margin:0 0 1.4rem;max-width:60ch;line-height:1.6}
+.leitor__link-retry{
+  background:none;border:0;padding:0;margin-left:.3rem;cursor:pointer;
+  color:var(--gold-deep);text-decoration:underline;text-underline-offset:.2em;
+  font-family:inherit;font-size:inherit;
+}
+.leitor__link-retry:hover{color:var(--gold)}
+.leitor__aliyah-tag{
+  margin:1.8rem 0 1rem;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.8rem;
+}
+.leitor__aliyah-tag::before{content:"";width:22px;height:1px;background:var(--gold);opacity:.6;flex:none}
+
+.versiculo{display:flex;gap:1.1rem;padding:.9rem 0;border-bottom:1px solid rgba(199,162,87,.08);scroll-margin-top:6rem}
+.versiculo__num{
+  flex:none;width:1.8rem;padding-top:.15rem;
+  font-family:var(--sans);font-size:.78rem;color:var(--gold-deep);text-align:right;
+}
+.versiculo__textos{flex:1;min-width:0}
+.versiculo__he{
+  font-family:var(--serif);font-size:1.15rem;line-height:1.9;color:rgba(235,235,235,.92);margin:0 0 .4rem;
+}
+.versiculo__pt{font-size:.98rem;line-height:1.75;color:rgba(235,235,235,.72);margin:0}
+
+.fonte-nota{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);line-height:1.7}
+.fonte-nota a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:.2em}
+.fonte-nota a:hover{color:var(--gold)}
+
+/* --- calendário: seletor de cidade e próximo Shabat --- */
+.local-form{max-width:340px;margin-top:1rem}
+.local-form label{display:grid;gap:.5rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.local-form select{
+  font-family:var(--sans);font-size:1rem;color:var(--text);
+  background:rgba(255,255,255,.03);border:1px solid rgba(199,162,87,.2);
+  padding:.85rem 1rem;border-radius:2px;appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+  background-position:calc(100% - 1.3rem) center,calc(100% - 1rem) center;
+  background-size:6px 6px;background-repeat:no-repeat;color:rgba(235,235,235,.6);
+}
+.local-form select:focus{outline:0;border-color:var(--gold)}
+
+.shabat-card{
+  margin-top:2rem;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(199,162,87,.08),rgba(19,18,16,.4));
+  padding:clamp(1.6rem,4vw,2.6rem);
+}
+.shabat-card__status{margin:0;color:var(--muted)}
+.shabat-card__local{margin:0 0 .6rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.shabat-card__parasha{font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 1.6rem;display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.shabat-card__parasha .he{font-size:.75em;color:var(--gold)}
+.shabat-card__horarios{display:flex;flex-wrap:wrap;gap:2.4rem;margin-bottom:1rem}
+.shabat-card__horario{display:grid;gap:.4rem}
+.shabat-card__horario-label{font-size:.7rem;color:var(--muted)}
+.shabat-card__horario strong{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--cream)}
+.shabat-card__feriado{font-size:.9rem;color:var(--gold);margin:.3rem 0 0}
+.shabat-card .btn{margin-top:1.6rem}
+
+/* --- calendário mensal --- */
+.mes-nav{display:flex;align-items:center;justify-content:center;gap:1.6rem;margin-top:1.6rem}
+.mes-nav h2{font-size:clamp(1.3rem,3vw,1.9rem);min-width:14ch;text-align:center}
+.mes-nav__seta{
+  width:40px;height:40px;border:1px solid rgba(139,111,64,.3);background:transparent;
+  color:var(--gold-dark);font-size:1.1rem;cursor:pointer;border-radius:2px;
+  transition:background .3s ease,color .3s ease;
+}
+.mes-nav__seta:hover{background:var(--gold-dark);color:var(--cream)}
+
+.mes-lista{margin-top:2.6rem;border-top:1px solid rgba(139,111,64,.2)}
+.mes-lista__status{padding:2rem 0;text-align:center;color:#7a7365}
+.mes-lista__linha{
+  display:grid;grid-template-columns:4.5rem 1fr auto;gap:1.4rem;align-items:center;
+  padding:1.2rem .3rem;border-bottom:1px solid rgba(139,111,64,.16);
+}
+.mes-lista__dia{display:grid;justify-items:center;line-height:1.2}
+.mes-lista__dia-semana{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#8a8377}
+.mes-lista__dia-numero{font-family:var(--serif);font-size:1.5rem;color:#26241f}
+.mes-lista__titulo{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.mes-lista__nome{font-family:var(--serif);font-size:1.1rem}
+.mes-lista__tag{
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);
+  border:1px solid rgba(139,111,64,.3);padding:.15rem .5rem;border-radius:999px;
+}
+.mes-lista__tag--festa{color:#fff;background:var(--gold-dark);border-color:var(--gold-dark)}
+.mes-lista__memo{margin:.3rem 0 0;font-size:.85rem;color:#7a7365}
+.mes-lista__horarios{display:flex;flex-direction:column;gap:.3rem;text-align:right;font-size:.85rem;color:#5c574d;white-space:nowrap}
+
 /* --- tzedaká --- */
 .quote{text-align:center;margin-inline:auto}
 /* só os textos corridos ficam estreitos; a bênção usa a largura toda */
@@ -525,8 +686,16 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
 }
 @media (max-width:640px){
   body{font-size:16px}
-  .grid-4,.moadim,.playlists{grid-template-columns:1fr}
+  .grid-4,.moadim,.playlists,.ferramentas{grid-template-columns:1fr}
   .playlists-head{flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .estudo-form{grid-template-columns:1fr}
+  .parasha-card__topo{align-items:flex-start}
+  .versiculo{gap:.7rem}
+  .versiculo__num{width:1.4rem}
+  .mes-lista__linha{grid-template-columns:3rem 1fr;row-gap:.5rem}
+  .mes-lista__horarios{grid-column:1 / -1;flex-direction:row;text-align:left;gap:1rem;padding-left:calc(3rem + 1.4rem)}
+  .mes-nav{gap:1rem}
+  .mes-nav h2{min-width:0}
   .moed-modal{width:100%;max-height:92vh;border-radius:0}
   .moed-modal__head{padding:1.6rem 1.2rem 1rem;padding-right:4rem}
   .moed-modal__body{padding:1.3rem 1.2rem 2rem}

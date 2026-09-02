@@ -500,35 +500,61 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .parasha-card__he{font-size:.75em;color:var(--gold)}
 .parasha-card__ref{margin:0;color:var(--muted);font-size:.92rem}
 .parasha-card__haftara{margin:1.2rem 0 0;font-size:.9rem;color:rgba(235,235,235,.75)}
-.aliyah-pills{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:1.6rem}
-.aliyah-pills__label{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-right:.4rem}
-.aliyah-pill{
-  font-family:var(--sans);font-size:.78rem;color:var(--text);
-  background:rgba(199,162,87,.06);border:1px solid rgba(199,162,87,.25);border-radius:999px;
-  padding:.5rem 1rem;cursor:pointer;transition:background .3s ease,border-color .3s ease;
-  display:inline-flex;gap:.4rem;align-items:baseline;
+.aliyah-pills{margin-top:2rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+.aliyah-pills__label{
+  display:block;margin-bottom:1rem;
+  font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;
 }
-.aliyah-pill b{color:var(--gold);font-weight:600}
-.aliyah-pill:hover{background:rgba(199,162,87,.14);border-color:var(--gold)}
+.aliyah-pills__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.aliyah-pill{
+  font-family:var(--sans);color:rgba(235,235,235,.85);
+  background:rgba(199,162,87,.045);border:1px solid rgba(199,162,87,.18);border-radius:2px;
+  padding:.85rem 1rem;cursor:pointer;text-align:left;
+  display:flex;flex-direction:column;gap:.35rem;
+  transition:background .3s ease,border-color .3s ease,transform .3s ease;
+}
+.aliyah-pill__nome{font-size:.72rem;letter-spacing:.03em}
+.aliyah-pill__ref{font-family:var(--serif);font-size:1.15rem;color:var(--gold)}
+.aliyah-pill:hover{background:rgba(199,162,87,.1);border-color:var(--gold);transform:translateY(-3px)}
+.aliyah-pill:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+
+/* --- select "premium": mesma linguagem visual em toda a página --- */
+.campo-select{position:relative}
+.campo-select::after{
+  content:"";position:absolute;right:1.15rem;top:50%;
+  width:9px;height:9px;pointer-events:none;
+  border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);
+  transform:translateY(-65%) rotate(45deg);
+}
+.light .campo-select::after{border-color:var(--gold-dark)}
+select.campo-select__el{
+  width:100%;
+  font-family:var(--sans);font-size:1rem;color:var(--text);
+  background:rgba(199,162,87,.04);border:1px solid rgba(199,162,87,.25);
+  padding:1rem 2.6rem 1rem 1.15rem;border-radius:2px;
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  transition:border-color .3s ease,background .3s ease;
+}
+select.campo-select__el:hover{border-color:rgba(199,162,87,.45)}
+select.campo-select__el:focus{outline:0;border-color:var(--gold);background:rgba(199,162,87,.08)}
+.light select.campo-select__el{
+  background:rgba(255,255,255,.55);color:#26241f;border-color:rgba(139,111,64,.28);
+}
+.light select.campo-select__el:hover{border-color:rgba(139,111,64,.5)}
+.light select.campo-select__el:focus{border-color:var(--gold-dark);background:rgba(139,111,64,.08)}
 
 /* --- formulário de leitura livre --- */
+.estudo-painel{
+  margin-top:2.6rem;max-width:820px;
+  border:1px solid rgba(139,111,64,.22);
+  background:linear-gradient(160deg,rgba(139,111,64,.07),rgba(255,255,255,.5));
+  padding:clamp(1.6rem,4vw,2.4rem);
+}
 .estudo-form{
-  display:grid;grid-template-columns:1fr 1fr auto;gap:1.2rem;align-items:end;
-  margin-top:2.6rem;max-width:760px;
+  display:grid;grid-template-columns:1fr 1fr auto;gap:1.4rem;align-items:end;
 }
-.estudo-form label{display:grid;gap:.5rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
-.light .estudo-form label{color:#7a7365}
-.estudo-form select{
-  font-family:var(--sans);font-size:1rem;color:var(--text);
-  background:rgba(255,255,255,.03);border:1px solid rgba(199,162,87,.2);
-  padding:.85rem 1rem;border-radius:2px;appearance:none;cursor:pointer;
-  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
-  background-position:calc(100% - 1.3rem) center,calc(100% - 1rem) center;
-  background-size:6px 6px;background-repeat:no-repeat;
-  color:rgba(235,235,235,.6);
-}
-.light .estudo-form select{background:rgba(255,255,255,.6);color:#26241f;border-color:rgba(139,111,64,.28)}
-.estudo-form select:focus{outline:0;border-color:var(--gold)}
+.estudo-form label{display:grid;gap:.6rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:#7a7365;font-weight:600}
+.estudo-form .btn{padding-top:1rem;padding-bottom:1rem}
 
 /* --- leitor de versículos --- */
 .leitor{margin-top:1rem}
@@ -572,16 +598,7 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 
 /* --- calendário: seletor de cidade e próximo Shabat --- */
 .local-form{max-width:340px;margin-top:1rem}
-.local-form label{display:grid;gap:.5rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
-.local-form select{
-  font-family:var(--sans);font-size:1rem;color:var(--text);
-  background:rgba(255,255,255,.03);border:1px solid rgba(199,162,87,.2);
-  padding:.85rem 1rem;border-radius:2px;appearance:none;cursor:pointer;
-  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
-  background-position:calc(100% - 1.3rem) center,calc(100% - 1rem) center;
-  background-size:6px 6px;background-repeat:no-repeat;color:rgba(235,235,235,.6);
-}
-.local-form select:focus{outline:0;border-color:var(--gold)}
+.local-form label{display:grid;gap:.6rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:600}
 
 .shabat-card{
   margin-top:2rem;border:1px solid var(--line);
@@ -699,6 +716,7 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
   .grid-4,.moadim,.playlists,.ferramentas{grid-template-columns:1fr}
   .playlists-head{flex-direction:column;align-items:flex-start;gap:1.2rem}
   .estudo-form{grid-template-columns:1fr}
+  .aliyah-pills__grid{grid-template-columns:repeat(2,1fr)}
   .parasha-card__topo{align-items:flex-start}
   .versiculo{gap:.7rem}
   .versiculo__num{width:1.4rem}

@@ -102,17 +102,23 @@
     <p class="eyebrow reveal">Leitura livre</p>
     <h2 class="reveal">O que você quer estudar?</h2>
 
-    <form class="estudo-form reveal" id="estudoForm">
-      <label>Livro
-        <select id="estudoLivro" name="livro"></select>
-      </label>
-      <label>Capítulo <span class="muted" style="text-transform:none;letter-spacing:0">(opcional)</span>
-        <select id="estudoCapitulo" name="capitulo">
-          <option value="">Livro todo</option>
-        </select>
-      </label>
-      <button class="btn btn--solid" type="submit">Ler</button>
-    </form>
+    <div class="estudo-painel reveal">
+      <form class="estudo-form" id="estudoForm">
+        <label>Livro
+          <span class="campo-select">
+            <select class="campo-select__el" id="estudoLivro" name="livro"></select>
+          </span>
+        </label>
+        <label>Capítulo <span style="text-transform:none;letter-spacing:0;font-weight:400">(opcional)</span>
+          <span class="campo-select">
+            <select class="campo-select__el" id="estudoCapitulo" name="capitulo">
+              <option value="">Livro todo</option>
+            </select>
+          </span>
+        </label>
+        <button class="btn btn--solid" type="submit">Ler</button>
+      </form>
+    </div>
   </div>
 </section>
 

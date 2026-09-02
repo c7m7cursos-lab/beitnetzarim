@@ -331,22 +331,26 @@
     }
 
     var pills = criarElemento('div', 'aliyah-pills');
-    pills.appendChild(criarElemento('span', 'aliyah-pills__label', 'Ir direto para:'));
+    pills.appendChild(criarElemento('span', 'aliyah-pills__label', 'Ir direto para'));
+    var grade = criarElemento('div', 'aliyah-pills__grid');
     aliyot.forEach(function (a) {
-      var pill = criarElemento('button', 'aliyah-pill', a.rotulo + ' ');
+      var pill = criarElemento('button', 'aliyah-pill');
       pill.type = 'button';
-      pill.appendChild(criarElemento('b', null, a.b.cap + ':' + a.b.ver));
+      pill.appendChild(criarElemento('span', 'aliyah-pill__nome', a.rotulo));
+      pill.appendChild(criarElemento('span', 'aliyah-pill__ref', a.b.cap + ':' + a.b.ver));
       pill.addEventListener('click', function () { lerParashaEIrPara(item, aliyot, a); });
-      pills.appendChild(pill);
+      grade.appendChild(pill);
     });
     if (item.fullkriyah.M) {
       var mB = analisarRef(item.fullkriyah.M.b);
-      var pillM = criarElemento('button', 'aliyah-pill', 'Maftir ');
+      var pillM = criarElemento('button', 'aliyah-pill');
       pillM.type = 'button';
-      pillM.appendChild(criarElemento('b', null, mB.cap + ':' + mB.ver));
+      pillM.appendChild(criarElemento('span', 'aliyah-pill__nome', 'Maftir'));
+      pillM.appendChild(criarElemento('span', 'aliyah-pill__ref', mB.cap + ':' + mB.ver));
       pillM.addEventListener('click', function () { lerParashaEIrPara(item, aliyot, { b: mB }); });
-      pills.appendChild(pillM);
+      grade.appendChild(pillM);
     }
+    pills.appendChild(grade);
     card.appendChild(pills);
 
     btnLer.addEventListener('click', function () { lerParashaEIrPara(item, aliyot, null); });

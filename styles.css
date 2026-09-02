@@ -234,18 +234,21 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .leader__badge-role{font-family:var(--serif);font-weight:400;font-size:1.5rem;color:var(--cream)}
 .leader__badge-sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
 
-/* janela "Ver mais" do líder: mesma base do moed-modal, com foto no topo */
+/* janela "Ver mais" do líder: mesma base do moed-modal, com duas fotos no topo */
 .lider-modal{padding:0;overflow:hidden}
 .lider-modal__close{
   position:absolute;top:1.1rem;right:1.1rem;z-index:3;
 }
-.lider-modal__photo{
-  position:relative;width:100%;aspect-ratio:16/10;
-  background:linear-gradient(160deg,rgba(199,162,87,.14),rgba(19,18,16,.5));
+.lider-modal__fotos{
+  position:relative;width:100%;display:grid;grid-template-columns:1fr 1fr;
   flex:none;
 }
-.lider-modal__photo img{width:100%;height:100%;object-fit:cover;display:block}
-.lider-modal__photo.leader__photo--vazio img{display:none}
+.lider-modal__foto{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(160deg,rgba(199,162,87,.14),rgba(19,18,16,.5))}
+.lider-modal__foto img{width:100%;height:100%;object-fit:cover;display:block}
+.lider-modal__foto.leader__photo--vazio img{display:none}
+.lider-modal__foto .leader__placeholder{gap:0}
+.lider-modal__foto .leader__placeholder svg{width:38px;height:38px}
+.lider-modal__fotos .leader__badge{z-index:2}
 .lider-modal .moed-modal__body{padding-top:1.8rem}
 
 /* --- pilares --- */
@@ -727,7 +730,6 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
   .moed-modal{width:100%;max-height:92vh;border-radius:0}
   .moed-modal__head{padding:1.6rem 1.2rem 1rem;padding-right:4rem}
   .moed-modal__body{padding:1.3rem 1.2rem 2rem}
-  .lider-modal__photo{aspect-ratio:4/5}
   .leader__photo{aspect-ratio:1/1}
   .creed__item summary{gap:.9rem;padding:1.3rem .2rem}
   .creed__num{min-width:1.8rem}

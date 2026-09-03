@@ -250,6 +250,10 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .lider-modal__foto .leader__placeholder svg{width:38px;height:38px}
 .lider-modal__fotos .leader__badge{z-index:2}
 .lider-modal .moed-modal__body{padding-top:1.8rem}
+.lider-modal__pergunta{
+  font-size:clamp(1.4rem,3.2vw,1.9rem);color:var(--cream);margin:0 0 .8rem;
+}
+.lider-modal__resposta{font-size:1.02rem;color:var(--gold);margin-bottom:1.6rem}
 
 /* --- pilares --- */
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:3.4rem}

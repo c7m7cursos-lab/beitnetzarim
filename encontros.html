@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Torá Online — Congregação Yisraelita Beit Netzarim</title>
-<meta name="description" content="Leia a Torá on-line: a parashá da semana com a divisão em aliyot, ou escolha livremente livro e capítulo — texto hebraico e tradução em português.">
+<title>Nossa Semana — Congregação Yisraelita Beit Netzarim</title>
+<meta name="description" content="A programação semanal da Congregação Yisraelita Beit Netzarim: Kabalat Shabat, Shacharit, Beit Midrash Kids, Minchá, Havdalá, estudo semanal e Rosh Chodesh.">
 <meta name="theme-color" content="#131210">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Torá Online — Beit Netzarim">
-<meta property="og:description" content="A parashá da semana e a leitura livre da Torá, em hebraico e português.">
+<meta property="og:title" content="Nossa Semana — Beit Netzarim">
+<meta property="og:description" content="Todos são bem-vindos — venha como está. Veja os horários da nossa semana.">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:url" content="https://beitnetzarim.com.br/tora.html">
+<meta property="og:url" content="https://beitnetzarim.com.br/encontros.html">
 <meta property="og:image" content="https://beitnetzarim.com.br/logo.png">
-<link rel="canonical" href="https://beitnetzarim.com.br/tora.html">
+<link rel="canonical" href="https://beitnetzarim.com.br/encontros.html">
 
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -73,67 +73,73 @@
 <section class="hero hero--pagina" id="inicio">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow reveal">Estude a Torá</p>
-    <h1 class="reveal hero--pagina__titulo">Torá Online</h1>
-    <p class="lead reveal" style="max-width:56ch">A parashá lida em todo o Yisrael nesta semana, dividida
-      nas suas sete aliyot, ou a leitura livre de qualquer livro e capítulo — em hebraico e em português.</p>
+    <p class="eyebrow reveal">Encontros</p>
+    <h1 class="reveal hero--pagina__titulo">Nossa semana</h1>
+    <p class="lead reveal" style="max-width:56ch">Todos são bem-vindos — venha como está. Se for sua
+      primeira vez, avise-nos: teremos alguém para lhe receber.</p>
   </div>
 </section>
 
 <hr class="rule">
 
-<!-- ==================== PARASHÁ DA SEMANA ==================== -->
-<section id="parasha-semana">
+<!-- ==================== PROGRAMAÇÃO ==================== -->
+<section id="programacao">
   <div class="wrap">
-    <p class="eyebrow reveal">Leituras da semana</p>
-    <h2 class="reveal">Parashá da Semana</h2>
-
-    <div class="parasha-card reveal" id="parashaCard" aria-live="polite">
-      <p class="parasha-card__status">Buscando a parashá desta semana…</p>
+    <div class="schedule">
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Sexta-feira</div>
+        <div class="schedule__name">Kabalat Shabat<span></span>
+          <small>Acendimento das velas, Kidush e mesa de Shabat em família.</small>
+        </div>
+        <div class="schedule__time">Ao pôr do sol</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Shabat</div>
+        <div class="schedule__name">Shacharit &amp; Leitura da Torá
+          <small>Oração da manhã, parashá da semana e drashá.</small>
+        </div>
+        <div class="schedule__time">10h00</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Shabat</div>
+        <div class="schedule__name">Beit Midrash Kids
+          <small>Ensino das crianças com a parashá da semana, em paralelo ao culto.</small>
+        </div>
+        <div class="schedule__time">10h30</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Shabat</div>
+        <div class="schedule__name">Minchá
+          <small>Oração da tarde, com leitura e cânticos antes do encerramento do dia.</small>
+        </div>
+        <div class="schedule__time">15h00</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Shabat</div>
+        <div class="schedule__name">Havdalá
+          <small>Encerramento do Shabat com vinho, especiarias e luz.</small>
+        </div>
+        <div class="schedule__time">Ao anoitecer</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Quarta-feira</div>
+        <div class="schedule__name">Estudo semanal
+          <small>Aprofundamento nas Escrituras, hebraico e vida prática.</small>
+        </div>
+        <div class="schedule__time">19h00</div>
+      </div>
+      <div class="schedule__row reveal">
+        <div class="schedule__day">Mensal</div>
+        <div class="schedule__name">Rosh Chodesh
+          <small>Celebração da lua nova e abertura do mês hebraico.</small>
+        </div>
+        <div class="schedule__time">Conforme calendário</div>
+      </div>
     </div>
-  </div>
-</section>
 
-<hr class="rule">
-
-<!-- ==================== LEITURA LIVRE ==================== -->
-<section id="leitura-livre" class="light">
-  <div class="wrap">
-    <p class="eyebrow reveal">Leitura livre</p>
-    <h2 class="reveal">O que você quer estudar?</h2>
-
-    <div class="estudo-painel reveal">
-      <form class="estudo-form" id="estudoForm">
-        <label>Livro
-          <span class="campo-select">
-            <select class="campo-select__el" id="estudoLivro" name="livro"></select>
-          </span>
-        </label>
-        <label>Capítulo <span style="text-transform:none;letter-spacing:0;font-weight:400">(opcional)</span>
-          <span class="campo-select">
-            <select class="campo-select__el" id="estudoCapitulo" name="capitulo">
-              <option value="">Livro todo</option>
-            </select>
-          </span>
-        </label>
-        <button class="btn btn--solid" type="submit">Ler</button>
-      </form>
+    <div class="btn-row reveal">
+      <a class="btn" href="contato.html">Avisar que vou visitar</a>
     </div>
-  </div>
-</section>
-
-<!-- ==================== LEITOR ==================== -->
-<section id="leitor-secao">
-  <div class="wrap">
-    <div class="leitor" id="leitor">
-      <p class="leitor__vazio reveal">Escolha “Ler Parashá” acima ou monte sua própria leitura para começar.</p>
-    </div>
-
-    <p class="fonte-nota reveal">Texto hebraico: <em class="gold">Miqra according to the Masorah</em>, via
-      <a href="https://www.sefaria.org" target="_blank" rel="noopener">Sefaria.org</a> (CC BY-SA). Tradução em
-      português: João Ferreira de Almeida, edição de domínio público, via
-      <a href="https://bible-api.com" target="_blank" rel="noopener">bible-api.com</a>. Parashá, aliyot e
-      calendário: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a>.</p>
   </div>
 </section>
 
@@ -158,6 +164,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="tora.js"></script>
 </body>
 </html>

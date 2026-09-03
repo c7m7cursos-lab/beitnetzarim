@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Torá Online — Congregação Yisraelita Beit Netzarim</title>
-<meta name="description" content="Leia a Torá on-line: a parashá da semana com a divisão em aliyot, ou escolha livremente livro e capítulo — texto hebraico e tradução em português.">
+<title>Contato — Congregação Yisraelita Beit Netzarim</title>
+<meta name="description" content="Endereço, WhatsApp, e-mail e horários da Congregação Yisraelita Beit Netzarim — venha nos visitar ou envie uma mensagem.">
 <meta name="theme-color" content="#131210">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Torá Online — Beit Netzarim">
-<meta property="og:description" content="A parashá da semana e a leitura livre da Torá, em hebraico e português.">
+<meta property="og:title" content="Contato — Beit Netzarim">
+<meta property="og:description" content="Venha nos visitar. Endereço, WhatsApp, e-mail, horários e formulário de contato.">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:url" content="https://beitnetzarim.com.br/tora.html">
+<meta property="og:url" content="https://beitnetzarim.com.br/contato.html">
 <meta property="og:image" content="https://beitnetzarim.com.br/logo.png">
-<link rel="canonical" href="https://beitnetzarim.com.br/tora.html">
+<link rel="canonical" href="https://beitnetzarim.com.br/contato.html">
 
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -73,67 +73,50 @@
 <section class="hero hero--pagina" id="inicio">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow reveal">Estude a Torá</p>
-    <h1 class="reveal hero--pagina__titulo">Torá Online</h1>
-    <p class="lead reveal" style="max-width:56ch">A parashá lida em todo o Yisrael nesta semana, dividida
-      nas suas sete aliyot, ou a leitura livre de qualquer livro e capítulo — em hebraico e em português.</p>
+    <p class="eyebrow reveal">Contato</p>
+    <h1 class="reveal hero--pagina__titulo">Venha nos visitar</h1>
   </div>
 </section>
 
 <hr class="rule">
 
-<!-- ==================== PARASHÁ DA SEMANA ==================== -->
-<section id="parasha-semana">
+<!-- ==================== CONTATO ==================== -->
+<section id="fale-conosco">
   <div class="wrap">
-    <p class="eyebrow reveal">Leituras da semana</p>
-    <h2 class="reveal">Parashá da Semana</h2>
+    <div class="contact-grid">
+      <div class="info-list reveal">
+        <div>
+          <h4>Endereço</h4>
+          <p>Rua Exemplo, 000 — Bairro<br>Cidade / UF — CEP 00000-000</p>
+        </div>
+        <div>
+          <h4>WhatsApp</h4>
+          <p><a href="https://wa.me/5500000000000">(00) 00000-0000</a></p>
+        </div>
+        <div>
+          <h4>E-mail</h4>
+          <p><a href="mailto:contato@beitnetzarim.com.br">contato@beitnetzarim.com.br</a></p>
+        </div>
+        <div>
+          <h4>Horários</h4>
+          <p>Sexta ao pôr do sol &middot; Shabat 10h e 15h &middot; Quarta 19h</p>
+        </div>
+      </div>
 
-    <div class="parasha-card reveal" id="parashaCard" aria-live="polite">
-      <p class="parasha-card__status">Buscando a parashá desta semana…</p>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ==================== LEITURA LIVRE ==================== -->
-<section id="leitura-livre" class="light">
-  <div class="wrap">
-    <p class="eyebrow reveal">Leitura livre</p>
-    <h2 class="reveal">O que você quer estudar?</h2>
-
-    <div class="estudo-painel reveal">
-      <form class="estudo-form" id="estudoForm">
-        <label>Livro
-          <span class="campo-select">
-            <select class="campo-select__el" id="estudoLivro" name="livro"></select>
-          </span>
+      <form class="reveal" id="contatoForm" novalidate>
+        <label>Nome
+          <input type="text" name="nome" required placeholder="Seu nome completo">
         </label>
-        <label>Capítulo <span style="text-transform:none;letter-spacing:0;font-weight:400">(opcional)</span>
-          <span class="campo-select">
-            <select class="campo-select__el" id="estudoCapitulo" name="capitulo">
-              <option value="">Livro todo</option>
-            </select>
-          </span>
+        <label>E-mail ou WhatsApp
+          <input type="text" name="contato" required placeholder="Como podemos responder">
         </label>
-        <button class="btn btn--solid" type="submit">Ler</button>
+        <label>Mensagem
+          <textarea name="mensagem" required placeholder="Escreva sua mensagem, dúvida ou pedido de oração"></textarea>
+        </label>
+        <button type="submit" class="btn btn--solid" style="justify-content:center">Enviar mensagem</button>
+        <p class="muted" id="formStatus" style="font-size:.88rem;margin:0" role="status"></p>
       </form>
     </div>
-  </div>
-</section>
-
-<!-- ==================== LEITOR ==================== -->
-<section id="leitor-secao">
-  <div class="wrap">
-    <div class="leitor" id="leitor">
-      <p class="leitor__vazio reveal">Escolha “Ler Parashá” acima ou monte sua própria leitura para começar.</p>
-    </div>
-
-    <p class="fonte-nota reveal">Texto hebraico: <em class="gold">Miqra according to the Masorah</em>, via
-      <a href="https://www.sefaria.org" target="_blank" rel="noopener">Sefaria.org</a> (CC BY-SA). Tradução em
-      português: João Ferreira de Almeida, edição de domínio público, via
-      <a href="https://bible-api.com" target="_blank" rel="noopener">bible-api.com</a>. Parashá, aliyot e
-      calendário: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a>.</p>
   </div>
 </section>
 
@@ -158,6 +141,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="tora.js"></script>
 </body>
 </html>

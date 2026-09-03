@@ -1,26 +1,104 @@
-/* Torá Online — Congregação Yisraelita Beit Netzarim
+/* Bíblia Online — Congregação Yisraelita Beit Netzarim
    Fontes:
-   - Texto hebraico: Sefaria.org (Miqra according to the Masorah, CC BY-SA)
-   - Tradução em português: João Ferreira de Almeida, edição de domínio
-     público, servida por bible-api.com
-   - Parashá da semana e divisão em aliyot: Hebcal.com (Leyning API) */
+   - Texto hebraico do Tanach: Sefaria.org (Miqra according to the Masorah, CC BY-SA)
+   - Texto hebraico da Brit Chadashá: Delitzsch's Hebrew New Testament, 1877/1998, via bolls.life
+   - Tradução em português (Tanach e Brit Chadashá): Almeida Revista e Corrigida, 2009, via bolls.life
+   - Parashá da semana e divisão em aliyot: Hebcal.com (Leyning API)
+
+   Numeração de versículos: a tradição judaica (hebraico) e a tradição cristã (português) divergem em
+   alguns pontos do Tanach — um trecho de versículos pode ficar no fim de um capítulo numa tradição e no
+   início do seguinte na outra, ou um cabeçalho de Salmo pode ou não contar como versículo 1. Em vez de
+   simplesmente esconder a tradução quando as contagens não batem, o leitor tenta encontrar o deslocamento
+   de versículo que melhor alinha as duas tradições (ver `melhorDeslocamento`) e só recorre a mostrar
+   apenas o hebraico quando não encontra um alinhamento confiável. */
 (function () {
   'use strict';
 
   var LIVROS = [
-    { en: 'Genesis',     pt: 'Gênesis',       slug: 'genesis',     he: 'בְּרֵאשִׁית', capitulos: 50 },
-    { en: 'Exodus',      pt: 'Êxodo',         slug: 'exodus',      he: 'שְׁמוֹת',      capitulos: 40 },
-    { en: 'Leviticus',   pt: 'Levítico',      slug: 'leviticus',   he: 'וַיִּקְרָא',    capitulos: 27 },
-    { en: 'Numbers',     pt: 'Números',       slug: 'numbers',     he: 'בְּמִדְבַּר',   capitulos: 36 },
-    { en: 'Deuteronomy', pt: 'Deuteronômio',  slug: 'deuteronomy', he: 'דְּבָרִים',     capitulos: 34 }
+    { testamento: 'tanach', divisao: 'tora', en: 'Genesis', pt: 'Gênesis', he: 'בְּרֵאשִׁית', capitulos: 50, bollsId: 1 },
+    { testamento: 'tanach', divisao: 'tora', en: 'Exodus', pt: 'Êxodo', he: 'שְׁמוֹת', capitulos: 40, bollsId: 2 },
+    { testamento: 'tanach', divisao: 'tora', en: 'Leviticus', pt: 'Levítico', he: 'וַיִּקְרָא', capitulos: 27, bollsId: 3 },
+    { testamento: 'tanach', divisao: 'tora', en: 'Numbers', pt: 'Números', he: 'בְּמִדְבַּר', capitulos: 36, bollsId: 4 },
+    { testamento: 'tanach', divisao: 'tora', en: 'Deuteronomy', pt: 'Deuteronômio', he: 'דְּבָרִים', capitulos: 34, bollsId: 5 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Joshua', pt: 'Josué', he: 'יהושע', capitulos: 24, bollsId: 6 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Judges', pt: 'Juízes', he: 'שופטים', capitulos: 21, bollsId: 7 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'I Samuel', pt: '1 Samuel', he: 'שמואל א', capitulos: 31, bollsId: 9 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'II Samuel', pt: '2 Samuel', he: 'שמואל ב', capitulos: 24, bollsId: 10 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'I Kings', pt: '1 Reis', he: 'מלכים א', capitulos: 22, bollsId: 11 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'II Kings', pt: '2 Reis', he: 'מלכים ב', capitulos: 25, bollsId: 12 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Isaiah', pt: 'Isaías', he: 'ישעיהו', capitulos: 66, bollsId: 23 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Jeremiah', pt: 'Jeremias', he: 'ירמיהו', capitulos: 52, bollsId: 24 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Ezekiel', pt: 'Ezequiel', he: 'יחזקאל', capitulos: 48, bollsId: 26 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Hosea', pt: 'Oséias', he: 'הושע', capitulos: 14, bollsId: 28 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Joel', pt: 'Joel', he: 'יואל', capitulos: 4, bollsId: 29 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Amos', pt: 'Amós', he: 'עמוס', capitulos: 9, bollsId: 30 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Obadiah', pt: 'Obadias', he: 'עובדיה', capitulos: 1, bollsId: 31 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Jonah', pt: 'Jonas', he: 'יונה', capitulos: 4, bollsId: 32 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Micah', pt: 'Miquéias', he: 'מיכה', capitulos: 7, bollsId: 33 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Nahum', pt: 'Naum', he: 'נחום', capitulos: 3, bollsId: 34 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Habakkuk', pt: 'Habacuque', he: 'חבקוק', capitulos: 3, bollsId: 35 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Zephaniah', pt: 'Sofonias', he: 'צפניה', capitulos: 3, bollsId: 36 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Haggai', pt: 'Ageu', he: 'חגי', capitulos: 2, bollsId: 37 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Zechariah', pt: 'Zacarias', he: 'זכריה', capitulos: 14, bollsId: 38 },
+    { testamento: 'tanach', divisao: 'neviim', en: 'Malachi', pt: 'Malaquias', he: 'מלאכי', capitulos: 3, bollsId: 39 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Psalms', pt: 'Salmos', he: 'תהילים', capitulos: 150, bollsId: 19 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Proverbs', pt: 'Provérbios', he: 'משלי', capitulos: 31, bollsId: 20 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Job', pt: 'Jó', he: 'איוב', capitulos: 42, bollsId: 18 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Song of Songs', pt: 'Cânticos', he: 'שיר השירים', capitulos: 8, bollsId: 22 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Ruth', pt: 'Rute', he: 'רות', capitulos: 4, bollsId: 8 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Lamentations', pt: 'Lamentações', he: 'איכה', capitulos: 5, bollsId: 25 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Ecclesiastes', pt: 'Eclesiastes', he: 'קהלת', capitulos: 12, bollsId: 21 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Esther', pt: 'Ester', he: 'אסתר', capitulos: 10, bollsId: 17 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Daniel', pt: 'Daniel', he: 'דניאל', capitulos: 12, bollsId: 27 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Ezra', pt: 'Esdras', he: 'עזרא', capitulos: 10, bollsId: 15 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'Nehemiah', pt: 'Neemias', he: 'נחמיה', capitulos: 13, bollsId: 16 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'I Chronicles', pt: '1 Crônicas', he: 'דברי הימים א', capitulos: 29, bollsId: 13 },
+    { testamento: 'tanach', divisao: 'ketuvim', en: 'II Chronicles', pt: '2 Crônicas', he: 'דברי הימים ב', capitulos: 36, bollsId: 14 }
   ];
 
-  function livroPorNomeEn(nomeEn) {
-    for (var i = 0; i < LIVROS.length; i++) {
-      if (LIVROS[i].en === nomeEn) return LIVROS[i];
+  var LIVROS_NT = [
+    { testamento: 'nt', divisao: 'brit', en: 'nt40', pt: 'Mateus', he: 'הבשורה על-פי מתי', capitulos: 28, bollsId: 40 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt41', pt: 'Marcos', he: 'הבשורה על-פי מרקוס', capitulos: 16, bollsId: 41 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt42', pt: 'Lucas', he: 'הבשורה על-פי לוקס', capitulos: 24, bollsId: 42 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt43', pt: 'João', he: 'הבשורה על-פי יוחנן', capitulos: 21, bollsId: 43 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt44', pt: 'Atos', he: 'מעשי השליחים', capitulos: 28, bollsId: 44 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt45', pt: 'Romanos', he: 'אל-הרומיים', capitulos: 16, bollsId: 45 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt46', pt: '1 Coríntios', he: 'הראשונה אל-הקורנתיים', capitulos: 16, bollsId: 46 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt47', pt: '2 Coríntios', he: 'השנית אל-הקורנתיים', capitulos: 13, bollsId: 47 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt48', pt: 'Gálatas', he: 'אל-הגלטיים', capitulos: 6, bollsId: 48 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt49', pt: 'Efésios', he: 'אל-האפסיים', capitulos: 6, bollsId: 49 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt50', pt: 'Filipenses', he: 'אל-הפילפיים', capitulos: 4, bollsId: 50 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt51', pt: 'Colossenses', he: 'אל-הקולסים', capitulos: 4, bollsId: 51 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt52', pt: '1 Tessalonicenses', he: 'הראשונה אל-התסלוניקים', capitulos: 5, bollsId: 52 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt53', pt: '2 Tessalonicenses', he: 'השנית אל-התסלוניקים', capitulos: 3, bollsId: 53 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt54', pt: '1 Timóteo', he: 'הראשונה אל-טימותיוס', capitulos: 6, bollsId: 54 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt55', pt: '2 Timóteo', he: 'השנית אל-טימותיוס', capitulos: 4, bollsId: 55 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt56', pt: 'Tito', he: 'אל-טיטוס', capitulos: 3, bollsId: 56 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt57', pt: 'Filemom', he: 'אל-פילימון', capitulos: 1, bollsId: 57 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt58', pt: 'Hebreus', he: 'אגרת אל-העברים', capitulos: 13, bollsId: 58 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt59', pt: 'Tiago', he: 'אגרת יעקוב', capitulos: 5, bollsId: 59 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt60', pt: '1 Pedro', he: 'האגרת הראשונה לפטרוס השליח', capitulos: 5, bollsId: 60 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt61', pt: '2 Pedro', he: 'האגרת השנית לפטרוס השליח', capitulos: 3, bollsId: 61 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt62', pt: '1 João', he: 'האגרת הראשונה ליוחנן השליח', capitulos: 5, bollsId: 62 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt63', pt: '2 João', he: 'האגרת השנית ליוחנן השליח', capitulos: 1, bollsId: 63 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt64', pt: '3 João', he: 'האגרת השלישית ליוחנן השליח', capitulos: 1, bollsId: 64 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt65', pt: 'Judas', he: 'אגרת יהודה', capitulos: 1, bollsId: 65 },
+    { testamento: 'nt', divisao: 'brit', en: 'nt66', pt: 'Apocalipse', he: 'חזון יוחנן', capitulos: 22, bollsId: 66 }
+  ];
+
+  var TODOS_LIVROS = LIVROS.concat(LIVROS_NT);
+
+  var NOMES_DIVISAO = { tora: 'Torá', neviim: 'Neviim · Profetas', ketuvim: 'Ketuvim · Escritos', brit: 'Brit Chadashá · Novo Testamento' };
+
+  function livroPorChave(chave) {
+    for (var i = 0; i < TODOS_LIVROS.length; i++) {
+      if (TODOS_LIVROS[i].en === chave) return TODOS_LIVROS[i];
     }
     return null;
   }
+
+  /* mantido para a leitura da parashá da semana (Hebcal só devolve livros da Torá) */
+  function livroPorNomeEn(nomeEn) { return livroPorChave(nomeEn); }
 
   /* ---------- utilidades ---------- */
 
@@ -69,9 +147,9 @@
 
   function aguardar(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-  // bible-api.com é um serviço público gratuito com limite de requisições:
-  // pedidos em rajada (como ler um livro inteiro, capítulo a capítulo) podem
-  // ser recusados. Tenta de novo, com uma pequena espera, antes de desistir.
+  // as APIs públicas usadas aqui (Sefaria e bolls.life) têm limite de requisições:
+  // pedidos em rajada (como ler um livro inteiro, capítulo a capítulo) podem ser
+  // recusados. Tenta de novo, com uma pequena espera, antes de desistir.
   function buscarComRetentativa(url, tentativas, esperaMs) {
     return fetch(url).then(function (r) {
       if (r.ok) return r.json();
@@ -84,63 +162,148 @@
     });
   }
 
-  // todas as chamadas à bible-api.com passam por uma única fila, uma de cada
-  // vez, com uma pausa entre elas — ao ler um livro inteiro (dezenas de
-  // capítulos), isso evita disparar uma rajada de pedidos simultâneos contra
-  // essa API pública gratuita, que costuma recusar rajadas.
-  var filaBibleApi = Promise.resolve();
-  function buscarBibleApiEnfileirado(url) {
-    var vez = filaBibleApi.then(function () { return buscarComRetentativa(url, 4, 900); });
-    filaBibleApi = vez.then(function () { return aguardar(350); }, function () { return aguardar(350); });
+  // todas as chamadas à bolls.life (tradução em português e hebraico da Brit
+  // Chadashá) passam por uma única fila, uma de cada vez, com uma pausa entre
+  // elas — ao ler um livro inteiro, isso evita disparar uma rajada de pedidos
+  // simultâneos contra essa API pública gratuita.
+  var filaBolls = Promise.resolve();
+  function buscarBollsEnfileirado(url) {
+    var vez = filaBolls.then(function () { return buscarComRetentativa(url, 4, 900); });
+    filaBolls = vez.then(function () { return aguardar(280); }, function () { return aguardar(280); });
     return vez;
   }
 
-  function buscarCapitulo(livroEn, capitulo) {
-    var chave = livroEn + '.' + capitulo;
+  function limparHtmlBolls(texto) {
+    // <sup>...</sup> no texto da bolls.life são números de nota de rodapé/referência
+    // cruzada, não parte do versículo — removidos por inteiro (tag e conteúdo).
+    return String(texto || '')
+      .replace(/<sup[^>]*>.*?<\/sup>/gi, '')
+      .replace(/<[^>]+>/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function urlSefaria(livroEn, capitulo) {
+    return 'https://www.sefaria.org/api/texts/' + encodeURIComponent(livroEn) + '.' + capitulo + '?context=0';
+  }
+  function urlBolls(traducao, bollsId, capitulo) {
+    return 'https://bolls.life/get-text/' + traducao + '/' + bollsId + '/' + capitulo + '/';
+  }
+
+  /* ---------- alinhamento entre hebraico e português ----------
+     A numeração de versículos da tradição judaica (hebraico) diverge da
+     numeração cristã (português) em alguns pontos do Tanach: um trecho de
+     versículos pode ficar no fim de um capítulo numa tradição e no início do
+     seguinte na outra, ou um cabeçalho de Salmo pode ou não ser contado como
+     versículo. Em vez de exigir que as contagens batam exatamente, procura o
+     deslocamento (positivo ou negativo) que melhor alinha as dias listas,
+     comparando o tamanho de cada par de versículos — versículos que
+     realmente correspondem tendem a ter tamanhos proporcionais entre si. */
+
+  function pontuarDeslocamento(he, pt, deslocamento) {
+    var pares = 0, soma = 0;
+    for (var i = 0; i < he.length; i++) {
+      var j = i + deslocamento;
+      if (j < 0 || j >= pt.length) continue;
+      var lh = he[i].length, lp = pt[j].length;
+      if (lh < 2 || lp < 2) continue;
+      var razao = lh > lp ? lh / lp : lp / lh;
+      pares++;
+      soma += Math.max(0, 1 - Math.min(razao - 1, 3) / 3);
+    }
+    return { pares: pares, pontuacao: pares > 0 ? soma / pares : 0 };
+  }
+
+  // devolve o deslocamento a aplicar (0 = sem deslocamento), ou null se não
+  // encontrar um alinhamento confiável (nesse caso, mostra-se só o hebraico).
+  function melhorDeslocamento(he, pt) {
+    if (!pt || !pt.length || !he.length) return null;
+    if (he.length === pt.length) return 0;
+
+    var limite = Math.min(20, Math.max(he.length, pt.length));
+    var minimoPares = he.length < 3 ? 1 : 3;
+    var melhorD = null, melhorPontuacao = -1, melhorPares = 0;
+
+    for (var d = -limite; d <= limite; d++) {
+      var r = pontuarDeslocamento(he, pt, d);
+      if (r.pares < minimoPares) continue;
+      // pequena preferência por deslocamentos menores (mais prováveis) em caso de empate
+      var pontuacaoAjustada = r.pontuacao - Math.abs(d) * 0.001;
+      if (pontuacaoAjustada > melhorPontuacao) {
+        melhorPontuacao = pontuacaoAjustada;
+        melhorD = d;
+        melhorPares = r.pares;
+      }
+    }
+
+    if (melhorD === null) return null;
+    if (melhorPontuacao < 0.6) return null;
+    if (melhorD !== 0 && melhorPares < Math.min(3, he.length)) return null;
+    return melhorD;
+  }
+
+  function montarResultado(he, pt) {
+    if (pt === null) {
+      var semTraducao = he.map(function (h, i) { return { numero: i + 1, he: h, pt: '' }; });
+      return { versiculos: semTraducao, indisponivel: true, semAlinhamento: false };
+    }
+
+    var deslocamento = melhorDeslocamento(he, pt);
+    var semAlinhamento = deslocamento === null;
+
+    var versiculos = [];
+    for (var i = 0; i < he.length; i++) {
+      var j = semAlinhamento ? -1 : i + deslocamento;
+      var textoPt = (!semAlinhamento && j >= 0 && j < pt.length) ? pt[j] : '';
+      versiculos.push({ numero: i + 1, he: he[i], pt: textoPt });
+    }
+    return { versiculos: versiculos, indisponivel: false, semAlinhamento: semAlinhamento };
+  }
+
+  function buscarCapituloTanach(livro, capitulo) {
+    var chave = 'tn:' + livro.en + '.' + capitulo;
     if (cache[chave]) return cache[chave];
 
-    var livro = livroPorNomeEn(livroEn);
-    var urlHe = 'https://www.sefaria.org/api/texts/' + encodeURIComponent(livroEn) + '.' + capitulo + '?context=0';
-    var urlPt = 'https://bible-api.com/' + livro.slug + '+' + capitulo + '?translation=almeida';
+    var pHe = buscarComRetentativa(urlSefaria(livro.en, capitulo), 2, 700)
+      .then(function (j) { return (j.he || []).map(removerTags); });
+    var pPt = buscarBollsEnfileirado(urlBolls('ARC09', livro.bollsId, capitulo))
+      .then(function (j) { return (j || []).map(function (v) { return limparHtmlBolls(v.text); }); })
+      .catch(function () { return null; });
 
-    // o hebraico é essencial (é a base de toda a numeração); a falta dele
-    // derruba o capítulo. A tradução em português é tratada à parte: se
-    // faltar, o capítulo ainda aparece, só que sem o texto em português.
-    var pHe = buscarComRetentativa(urlHe, 2, 700).then(function (j) { return (j.he || []).map(removerTags); });
-    var pPt = buscarBibleApiEnfileirado(urlPt).then(function (j) {
-      return (j.verses || []).map(function (v) { return (v.text || '').trim(); });
-    }).catch(function () { return null; }); // null = tradução indisponível agora
-
-    var promessa = Promise.all([pHe, pPt]).then(function (resultados) {
-      var he = resultados[0];
-      var pt = resultados[1];
-      var indisponivel = pt === null;
-
-      // A numeração de versículos da tradição judaica (usada pelo texto hebraico e
-      // pelas aliyot) diverge da numeração cristã (usada pela tradução em português)
-      // em alguns pontos do Tanach — sobretudo em Deuteronômio, onde um versículo
-      // "extra" pode ficar no fim de um capítulo numa tradição e no início do
-      // seguinte na outra. Quando a contagem de versículos não bate, é sinal de que
-      // esse capítulo tem uma dessas divergências: em vez de arriscar parear o
-      // hebraico com a linha errada do português, mostramos só o hebraico e
-      // avisamos, em vez de arriscar mostrar as duas traduções desalinhadas.
-      var divergente = !indisponivel && he.length !== pt.length;
-      var semPt = indisponivel || divergente;
-
-      var versiculos = [];
-      for (var n = 0; n < he.length; n++) {
-        versiculos.push({ numero: n + 1, he: he[n] || '', pt: semPt ? '' : (pt[n] || '') });
-      }
-      return { versiculos: versiculos, divergente: divergente, indisponivel: indisponivel };
+    var promessa = Promise.all([pHe, pPt]).then(function (r) {
+      return montarResultado(r[0], r[1]);
     }, function () {
       return { erro: true };
     });
 
     cache[chave] = promessa;
-    // uma falha total ou uma tradução indisponível não ficam presas em cache:
-    // assim, um clique em "tentar novamente" busca de novo de verdade.
     promessa.then(function (r) { if (r.erro || r.indisponivel) delete cache[chave]; });
     return promessa;
+  }
+
+  function buscarCapituloNT(livro, capitulo) {
+    var chave = 'nt:' + livro.bollsId + '.' + capitulo;
+    if (cache[chave]) return cache[chave];
+
+    var pHe = buscarBollsEnfileirado(urlBolls('DHNT', livro.bollsId, capitulo))
+      .then(function (j) { return (j || []).map(function (v) { return limparHtmlBolls(v.text); }); });
+    var pPt = buscarBollsEnfileirado(urlBolls('ARC09', livro.bollsId, capitulo))
+      .then(function (j) { return (j || []).map(function (v) { return limparHtmlBolls(v.text); }); })
+      .catch(function () { return null; });
+
+    var promessa = Promise.all([pHe, pPt]).then(function (r) {
+      return montarResultado(r[0], r[1]);
+    }, function () {
+      return { erro: true };
+    });
+
+    cache[chave] = promessa;
+    promessa.then(function (r) { if (r.erro || r.indisponivel) delete cache[chave]; });
+    return promessa;
+  }
+
+  function buscarCapitulo(livro, capitulo) {
+    return livro.testamento === 'nt' ? buscarCapituloNT(livro, capitulo) : buscarCapituloTanach(livro, capitulo);
   }
 
   /* ---------- montagem do leitor na tela ---------- */
@@ -153,7 +316,7 @@
   }
 
   function renderizarIntervalo(container, opts) {
-    // opts: {livroEn, inicioCap, inicioVer, fimCap, fimVer, marcadores, cabecalho}
+    // opts: {livroChave, inicioCap, inicioVer, fimCap, fimVer, marcadores, cabecalho}
     container.innerHTML = '';
     var status = criarElemento('p', 'leitor__status',
       (opts.fimCap - opts.inicioCap > 4)
@@ -161,12 +324,12 @@
         : 'Carregando o texto…');
     container.appendChild(status);
 
-    var livro = livroPorNomeEn(opts.livroEn);
+    var livro = livroPorChave(opts.livroChave);
     var capitulos = [];
     for (var c = opts.inicioCap; c <= opts.fimCap; c++) capitulos.push(c);
 
     var tarefas = capitulos.map(function (c) {
-      return function () { return buscarCapitulo(opts.livroEn, c); };
+      return function () { return buscarCapitulo(livro, c); };
     });
 
     limitar(tarefas, 3).then(function (resultadosPorCapitulo) {
@@ -195,9 +358,9 @@
     });
   }
 
-  // Preenche o wrapper de UM capítulo: texto normal, aviso de numeração
-  // divergente, ou aviso de falha com um botão para tentar de novo — usado
-  // tanto na primeira renderização quanto ao clicar em "Tentar novamente".
+  // Preenche o wrapper de UM capítulo: texto normal, aviso de numeração sem
+  // alinhamento confiável, ou aviso de falha com um botão para tentar de novo
+  // — usado tanto na primeira renderização quanto ao clicar em "Tentar novamente".
   function preencherBlocoCapitulo(wrapper, livro, cap, resultado, vIniFixo, vFimFixo, marcadoresPorPosicao) {
     wrapper.innerHTML = '';
 
@@ -209,7 +372,7 @@
       btnRetry.type = 'button';
       btnRetry.addEventListener('click', function () {
         wrapper.innerHTML = '<p class="leitor__status">Tentando de novo…</p>';
-        buscarCapitulo(livro.en, cap).then(function (novoResultado) {
+        buscarCapitulo(livro, cap).then(function (novoResultado) {
           preencherBlocoCapitulo(wrapper, livro, cap, novoResultado, vIniFixo, vFimFixo, marcadoresPorPosicao);
         });
       });
@@ -223,17 +386,18 @@
     var vFim = vFimFixo || versiculos.length;
 
     wrapper.appendChild(criarElemento('h3', 'leitor__cap-titulo', 'Capítulo ' + cap + ' · ' + livro.pt));
-    if (resultado.divergente) {
+    if (resultado.semAlinhamento) {
       wrapper.appendChild(criarElemento('p', 'leitor__aviso-divergencia',
         'A numeração de versículos deste capítulo diverge entre a tradição hebraica e a tradução em ' +
-        'português consultada — por isso, aqui mostramos apenas o texto hebraico.'));
+        'português consultada, e não foi possível alinhar as duas com segurança — por isso, aqui mostramos ' +
+        'apenas o texto hebraico.'));
     } else if (resultado.indisponivel) {
       var aviso = criarElemento('p', 'leitor__aviso-divergencia',
         'A tradução em português deste capítulo não pôde ser carregada agora — aqui está o texto hebraico. ');
       var linkRetry = criarElemento('button', 'leitor__link-retry', 'Tentar carregar a tradução');
       linkRetry.type = 'button';
       linkRetry.addEventListener('click', function () {
-        buscarCapitulo(livro.en, cap).then(function (novoResultado) {
+        buscarCapitulo(livro, cap).then(function (novoResultado) {
           preencherBlocoCapitulo(wrapper, livro, cap, novoResultado, vIniFixo, vFimFixo, marcadoresPorPosicao);
         });
       });
@@ -375,7 +539,7 @@
 
     var container = document.getElementById('leitor');
     renderizarIntervalo(container, {
-      livroEn: item.fullkriyah['1'].k,
+      livroChave: item.fullkriyah['1'].k,
       inicioCap: primeiraAliyah.b.cap,
       inicioVer: primeiraAliyah.b.ver,
       fimCap: ultimaAliyah.e.cap,
@@ -399,11 +563,18 @@
 
   function popularSelects() {
     var selLivro = document.getElementById('estudoLivro');
-    LIVROS.forEach(function (l) {
+    var grupos = {};
+    ['tora', 'neviim', 'ketuvim', 'brit'].forEach(function (div) {
+      var optgroup = document.createElement('optgroup');
+      optgroup.label = NOMES_DIVISAO[div];
+      grupos[div] = optgroup;
+      selLivro.appendChild(optgroup);
+    });
+    TODOS_LIVROS.forEach(function (l) {
       var opt = document.createElement('option');
       opt.value = l.en;
       opt.textContent = l.pt;
-      selLivro.appendChild(opt);
+      grupos[l.divisao].appendChild(opt);
     });
     atualizarCapitulos();
     selLivro.addEventListener('change', atualizarCapitulos);
@@ -412,7 +583,7 @@
   function atualizarCapitulos() {
     var selLivro = document.getElementById('estudoLivro');
     var selCap = document.getElementById('estudoCapitulo');
-    var livro = livroPorNomeEn(selLivro.value) || LIVROS[0];
+    var livro = livroPorChave(selLivro.value) || TODOS_LIVROS[0];
     selCap.innerHTML = '<option value="">Livro todo</option>';
     for (var c = 1; c <= livro.capitulos; c++) {
       var opt = document.createElement('option');
@@ -424,9 +595,9 @@
 
   function lerLeituraLivre(e) {
     e.preventDefault();
-    var livroEn = document.getElementById('estudoLivro').value;
+    var livroChave = document.getElementById('estudoLivro').value;
     var capituloStr = document.getElementById('estudoCapitulo').value;
-    var livro = livroPorNomeEn(livroEn);
+    var livro = livroPorChave(livroChave);
 
     var inicioCap, fimCap, fimVer;
     if (capituloStr) {
@@ -439,7 +610,7 @@
     }
 
     var cabecalho = criarElemento('div', 'leitor__titulo-bloco');
-    cabecalho.appendChild(criarElemento('p', 'eyebrow', 'Leitura livre'));
+    cabecalho.appendChild(criarElemento('p', 'eyebrow', livro.testamento === 'nt' ? 'Brit Chadashá · Leitura livre' : 'Leitura livre'));
     var h2 = criarElemento('h2', null, livro.pt + ' ');
     h2.appendChild(criarElemento('span', 'he', livro.he));
     cabecalho.appendChild(h2);
@@ -448,7 +619,7 @@
 
     var container = document.getElementById('leitor');
     renderizarIntervalo(container, {
-      livroEn: livroEn,
+      livroChave: livroChave,
       inicioCap: inicioCap,
       inicioVer: 1,
       fimCap: fimCap,

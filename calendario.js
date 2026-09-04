@@ -157,7 +157,7 @@
       card.appendChild(criarElemento('p', 'shabat-card__feriado', traduzirTitulo(f)));
     });
 
-    var linkTora = criarElemento('a', 'btn', 'Ler esta parashá na Torá Online');
+    var linkTora = criarElemento('a', 'btn', 'Ler esta parashá em Torá e Brit Chadashá Online');
     linkTora.href = 'tora.html';
     card.appendChild(linkTora);
   }

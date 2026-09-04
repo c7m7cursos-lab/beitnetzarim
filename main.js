@@ -222,4 +222,67 @@
       window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
     });
   }
+
+  /* --- membro apoiador (Pix recorrente ou cartão): abre o WhatsApp com a
+     escolha pronta, até a congregação configurar um gateway de pagamento --- */
+  var painelApoiador = document.querySelector('.apoiador-painel');
+  if (painelApoiador) {
+    var botoesValor = Array.prototype.slice.call(painelApoiador.querySelectorAll('[data-valor]'));
+    var botoesForma = Array.prototype.slice.call(painelApoiador.querySelectorAll('[data-forma]'));
+    var outroWrap = document.getElementById('apoiadorOutroWrap');
+    var outroInput = document.getElementById('apoiadorOutroValor');
+    var aviso = document.getElementById('apoiadorAviso');
+    var btnContinuar = document.getElementById('apoiadorContinuar');
+
+    botoesValor.forEach(function (botao) {
+      botao.addEventListener('click', function () {
+        botoesValor.forEach(function (b) { b.classList.toggle('is-ativo', b === botao); });
+        var ehOutro = botao.dataset.valor === 'outro';
+        outroWrap.hidden = !ehOutro;
+        if (ehOutro) outroInput.focus();
+        else outroInput.value = '';
+      });
+    });
+
+    botoesForma.forEach(function (botao) {
+      botao.addEventListener('click', function () {
+        botoesForma.forEach(function (b) { b.classList.toggle('is-ativo', b === botao); });
+      });
+    });
+
+    btnContinuar.addEventListener('click', function () {
+      var botaoValorAtivo = botoesValor.filter(function (b) { return b.classList.contains('is-ativo'); })[0];
+      var botaoFormaAtivo = botoesForma.filter(function (b) { return b.classList.contains('is-ativo'); })[0];
+
+      var valor = null;
+      if (botaoValorAtivo) {
+        if (botaoValorAtivo.dataset.valor === 'outro') {
+          var digitado = parseFloat(outroInput.value);
+          if (digitado > 0) valor = digitado;
+        } else {
+          valor = parseFloat(botaoValorAtivo.dataset.valor);
+        }
+      }
+
+      aviso.classList.remove('apoiador-aviso--erro');
+      if (!valor) {
+        aviso.textContent = 'Escolha (ou digite) o valor da contribuição mensal.';
+        aviso.classList.add('apoiador-aviso--erro');
+        return;
+      }
+      if (!botaoFormaAtivo) {
+        aviso.textContent = 'Escolha a forma de contribuição: Pix recorrente ou cartão de crédito.';
+        aviso.classList.add('apoiador-aviso--erro');
+        return;
+      }
+
+      var valorFormatado = valor % 1 === 0 ? valor.toFixed(0) : valor.toFixed(2).replace('.', ',');
+      var texto =
+        'Shalom! Quero ser um membro apoiador da Beit Netzarim, contribuindo com R$ ' + valorFormatado +
+        ' por mês via ' + botaoFormaAtivo.dataset.forma + '. Podem me enviar as instruções para começar?';
+
+      aviso.textContent = 'Abrindo o WhatsApp...';
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    });
+  }
 })();

@@ -525,6 +525,38 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .aliyah-pill:hover{background:rgba(199,162,87,.1);border-color:var(--gold);transform:translateY(-3px)}
 .aliyah-pill:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
 
+/* --- membro apoiador: escolha de valor e forma de contribuição --- */
+.apoiador-painel{max-width:44rem;margin-top:2.4rem}
+.apoiador-rotulo{
+  font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;
+  margin:1.8rem 0 1rem;
+}
+.apoiador-rotulo:first-child{margin-top:0}
+.apoiador-valores{display:flex;flex-wrap:wrap;gap:.7rem}
+.apoiador-opcao{
+  font-family:var(--sans);color:rgba(235,235,235,.85);
+  background:rgba(199,162,87,.045);border:1px solid rgba(199,162,87,.18);border-radius:2px;
+  padding:.85rem 1.4rem;cursor:pointer;
+  font-size:.85rem;letter-spacing:.02em;
+  transition:background .3s ease,border-color .3s ease,color .3s ease;
+}
+.apoiador-opcao:hover{background:rgba(199,162,87,.1);border-color:var(--gold)}
+.apoiador-opcao:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+.apoiador-opcao.is-ativo{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.apoiador-outro{
+  display:block;margin-top:1rem;max-width:16rem;
+  font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.apoiador-outro[hidden]{display:none}
+.apoiador-outro input{
+  display:block;width:100%;margin-top:.6rem;
+  background:rgba(235,235,235,.04);border:1px solid var(--line);border-radius:2px;
+  color:var(--text);font-family:var(--sans);font-size:1rem;padding:.85rem 1rem;
+}
+.apoiador-outro input:focus{outline:0;border-color:var(--gold)}
+.apoiador-aviso{margin:1rem 0 0;text-align:center;font-size:.85rem;color:var(--muted);min-height:1.2em}
+.apoiador-aviso.apoiador-aviso--erro{color:#d98c8c}
+
 /* --- select "premium": mesma linguagem visual em toda a página --- */
 .campo-select{position:relative}
 .campo-select::after{

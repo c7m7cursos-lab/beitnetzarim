@@ -745,11 +745,7 @@ select.campo-select__el:focus{outline:0;border-color:var(--gold);background:rgba
 .quote cite{font-style:normal;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
 
 /* --- contato --- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);margin-top:3rem}
-.info-list{display:grid;gap:1.8rem}
-.info-list div h4{font-family:var(--sans);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:0 0 .5rem}
-.info-list div p{margin:0;color:rgba(235,235,235,.82)}
-.info-list a:hover{color:var(--gold)}
+.contact-grid{display:grid;max-width:34rem;margin:3rem auto 0}
 
 form{display:grid;gap:1.1rem}
 label{display:grid;gap:.5rem;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
@@ -776,7 +772,7 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
 
 /* --- responsivo --- */
 @media (max-width:960px){
-  .split,.contact-grid,.overlay__inner{grid-template-columns:1fr}
+  .split,.overlay__inner{grid-template-columns:1fr}
   .overlay__aside{border-left:0;border-top:1px solid var(--line);padding:2rem 0 0}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .moadim{grid-template-columns:repeat(2,1fr)}

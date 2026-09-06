@@ -120,6 +120,21 @@
 
 <hr class="rule">
 
+<!-- ==================== EMUNATÊNU (DECLARAÇÃO DE FÉ) ==================== -->
+<section id="emunatenu">
+  <div class="wrap quote">
+    <p class="eyebrow center reveal">Emunatênu &middot; אמונתנו</p>
+    <h2 class="reveal">Nossa declaração de fé</h2>
+    <p class="lead reveal" style="max-width:60ch;margin-inline:auto">Aquilo que cremos, ensinamos e praticamos nesta casa —
+      exposto em seis fundamentos.</p>
+    <div class="btn-row reveal" style="justify-content:center">
+      <a class="btn" href="emunatenu.html">O que cremos</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- ==================== NOSSO LÍDER ==================== -->
 <section id="lideranca">
   <div class="wrap split leader">
@@ -188,51 +203,42 @@
 
 <hr class="rule">
 
-<!-- ==================== PILARES ==================== -->
-<section id="pilares">
-  <div class="wrap">
-    <p class="eyebrow reveal">Nossa fé</p>
-    <h2 class="reveal" style="max-width:18ch">Quatro pilares<br>que sustentam esta casa</h2>
-    <div class="grid-4">
-      <article class="card reveal">
-        <div class="num">01</div>
-        <h3>Torá e Brit Chadashá</h3>
-        <p>A instrução do Eterno é eterna e boa. Estudamos e vivemos a Torá e a Brit Chadashá como caminho de
-          santidade, não como fardo.</p>
-      </article>
-      <article class="card reveal">
-        <div class="num">02</div>
-        <h3>Yeshua</h3>
-        <p>Cremos em Yeshua, o Messias de Israel — Aquele que não veio abolir, mas cumprir e
-          ensinar a Palavra em plenitude.</p>
-      </article>
-      <article class="card reveal">
-        <div class="num">03</div>
-        <h3>Yisrael</h3>
-        <p>Amamos Israel, seu povo e sua esperança. Guardamos o Shabat e os moadim, tempos
-          marcados pelo próprio Criador.</p>
-      </article>
-      <article class="card reveal">
-        <div class="num">04</div>
-        <h3>Kehilá</h3>
-        <p>Comunidade é lugar de pertencimento: mesa posta, crianças ensinadas, viúvas
-          amparadas, irmãos que se sustentam.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ==================== EMUNATÊNU (DECLARAÇÃO DE FÉ) ==================== -->
-<section id="emunatenu">
+<!-- ==================== SEJA UM MEMBRO APOIADOR ==================== -->
+<section id="apoiador">
   <div class="wrap quote">
-    <p class="eyebrow center reveal">Emunatênu &middot; אמונתנו</p>
-    <h2 class="reveal">Nossa declaração de fé</h2>
-    <p class="lead reveal" style="max-width:60ch;margin-inline:auto">Aquilo que cremos, ensinamos e praticamos nesta casa —
-      exposto em seis fundamentos.</p>
-    <div class="btn-row reveal" style="justify-content:center">
-      <a class="btn" href="emunatenu.html">O que cremos</a>
+    <p class="eyebrow center reveal">Sustente esta casa</p>
+    <h2 class="reveal">Seja um membro apoiador</h2>
+    <p class="lead reveal" style="max-width:56ch;margin-inline:auto">Contribua mensalmente com o valor que puder —
+      sua parceria sustenta o ensino da Torá e da Brit Chadashá, o cuidado com as famílias da comunidade e a manutenção da casa.</p>
+
+    <div class="doadores-ticker reveal" id="doadoresTicker" aria-label="Membros apoiadores">
+      <div class="doadores-ticker__trilho" id="doadoresTrilho"></div>
+    </div>
+
+    <div class="apoiador-painel reveal">
+      <p class="apoiador-rotulo">Valor mensal</p>
+      <div class="apoiador-valores" role="group" aria-label="Escolha o valor da contribuição mensal">
+        <button type="button" class="apoiador-opcao" data-valor="50">R$ 50</button>
+        <button type="button" class="apoiador-opcao" data-valor="100">R$ 100</button>
+        <button type="button" class="apoiador-opcao" data-valor="200">R$ 200</button>
+        <button type="button" class="apoiador-opcao" data-valor="500">R$ 500</button>
+        <button type="button" class="apoiador-opcao" data-valor="1000">R$ 1.000</button>
+        <button type="button" class="apoiador-opcao" data-valor="outro">Outro valor</button>
+      </div>
+      <label class="apoiador-outro" id="apoiadorOutroWrap" hidden>Digite o valor mensal (R$)
+        <input type="number" id="apoiadorOutroValor" min="1" step="1" inputmode="numeric" placeholder="Ex.: 150">
+      </label>
+
+      <p class="apoiador-rotulo">Forma de contribuição</p>
+      <div class="apoiador-valores" role="group" aria-label="Escolha a forma de contribuição">
+        <button type="button" class="apoiador-opcao" data-forma="Pix recorrente">Pix recorrente</button>
+        <button type="button" class="apoiador-opcao" data-forma="Cartão de crédito">Cartão de crédito</button>
+      </div>
+
+      <div class="btn-row" style="justify-content:center;margin-top:2rem">
+        <button type="button" class="btn btn--solid" id="apoiadorContinuar">Quero contribuir</button>
+      </div>
+      <p class="apoiador-aviso" id="apoiadorAviso" role="status"></p>
     </div>
   </div>
 </section>
@@ -279,21 +285,6 @@
     <div class="plate reveal">
       <span class="hebrew">שַׁבָּת</span>
       <span class="translit">Shabat &middot; Descanso</span>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ==================== MOADIM ==================== -->
-<section id="moadim">
-  <div class="wrap quote">
-    <p class="eyebrow center reveal">Moadim</p>
-    <h2 class="reveal">As festas do Eterno</h2>
-    <p class="lead reveal" style="max-width:58ch;margin-inline:auto">“Estas são as festas fixas do Eterno, santas convocações
-      que proclamareis a seu tempo determinado.” — Vayikrá 23:4</p>
-    <div class="btn-row reveal" style="justify-content:center">
-      <a class="btn" href="moadim.html">Conheça as festas do Eterno</a>
     </div>
   </div>
 </section>
@@ -450,6 +441,21 @@
 
 <hr class="rule">
 
+<!-- ==================== MOADIM ==================== -->
+<section id="moadim">
+  <div class="wrap quote">
+    <p class="eyebrow center reveal">Moadim</p>
+    <h2 class="reveal">As festas do Eterno</h2>
+    <p class="lead reveal" style="max-width:58ch;margin-inline:auto">“Estas são as festas fixas do Eterno, santas convocações
+      que proclamareis a seu tempo determinado.” — Vayikrá 23:4</p>
+    <div class="btn-row reveal" style="justify-content:center">
+      <a class="btn" href="moadim.html">Conheça as festas do Eterno</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- ==================== TZEDAKÁ ==================== -->
 <section id="tzedaka">
   <div class="wrap quote">
@@ -476,42 +482,36 @@
 
 <hr class="rule">
 
-<!-- ==================== SEJA UM MEMBRO APOIADOR ==================== -->
-<section id="apoiador">
-  <div class="wrap quote">
-    <p class="eyebrow center reveal">Sustente esta casa</p>
-    <h2 class="reveal">Seja um membro apoiador</h2>
-    <p class="lead reveal" style="max-width:56ch;margin-inline:auto">Contribua mensalmente com o valor que puder —
-      sua parceria sustenta o ensino da Torá e da Brit Chadashá, o cuidado com as famílias da comunidade e a manutenção da casa.</p>
-
-    <div class="doadores-ticker reveal" id="doadoresTicker" aria-label="Membros apoiadores">
-      <div class="doadores-ticker__trilho" id="doadoresTrilho"></div>
-    </div>
-
-    <div class="apoiador-painel reveal">
-      <p class="apoiador-rotulo">Valor mensal</p>
-      <div class="apoiador-valores" role="group" aria-label="Escolha o valor da contribuição mensal">
-        <button type="button" class="apoiador-opcao" data-valor="50">R$ 50</button>
-        <button type="button" class="apoiador-opcao" data-valor="100">R$ 100</button>
-        <button type="button" class="apoiador-opcao" data-valor="200">R$ 200</button>
-        <button type="button" class="apoiador-opcao" data-valor="500">R$ 500</button>
-        <button type="button" class="apoiador-opcao" data-valor="1000">R$ 1.000</button>
-        <button type="button" class="apoiador-opcao" data-valor="outro">Outro valor</button>
-      </div>
-      <label class="apoiador-outro" id="apoiadorOutroWrap" hidden>Digite o valor mensal (R$)
-        <input type="number" id="apoiadorOutroValor" min="1" step="1" inputmode="numeric" placeholder="Ex.: 150">
-      </label>
-
-      <p class="apoiador-rotulo">Forma de contribuição</p>
-      <div class="apoiador-valores" role="group" aria-label="Escolha a forma de contribuição">
-        <button type="button" class="apoiador-opcao" data-forma="Pix recorrente">Pix recorrente</button>
-        <button type="button" class="apoiador-opcao" data-forma="Cartão de crédito">Cartão de crédito</button>
-      </div>
-
-      <div class="btn-row" style="justify-content:center;margin-top:2rem">
-        <button type="button" class="btn btn--solid" id="apoiadorContinuar">Quero contribuir</button>
-      </div>
-      <p class="apoiador-aviso" id="apoiadorAviso" role="status"></p>
+<!-- ==================== PILARES ==================== -->
+<section id="pilares">
+  <div class="wrap">
+    <p class="eyebrow reveal">Nossa fé</p>
+    <h2 class="reveal" style="max-width:18ch">Quatro pilares<br>que sustentam esta casa</h2>
+    <div class="grid-4">
+      <article class="card reveal">
+        <div class="num">01</div>
+        <h3>Yeshua</h3>
+        <p>Cremos em Yeshua, o Messias de Israel — Aquele que não veio abolir, mas cumprir e
+          ensinar a Palavra em plenitude.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num">02</div>
+        <h3>Torá e Brit Chadashá</h3>
+        <p>A instrução do Eterno é eterna e boa. Estudamos e vivemos a Torá e a Brit Chadashá como caminho de
+          santidade, não como fardo.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num">03</div>
+        <h3>Yisrael</h3>
+        <p>Amamos Israel, seu povo e sua esperança. Guardamos o Shabat e os moadim, tempos
+          marcados pelo próprio Criador.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num">04</div>
+        <h3>Kehilá</h3>
+        <p>Comunidade é lugar de pertencimento: mesa posta, crianças ensinadas, viúvas
+          amparadas, irmãos que se sustentam.</p>
+      </article>
     </div>
   </div>
 </section>

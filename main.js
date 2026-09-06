@@ -223,6 +223,40 @@
     });
   }
 
+  /* --- faixa de membros apoiadores ---
+     Lista mantida à mão: como ainda não há gateway de pagamento integrado,
+     ninguém é adicionado aqui automaticamente. Sempre que alguém contribuir
+     (por Pix, cartão etc.), adicione uma linha abaixo com o nome (ou "Anônimo")
+     e, se quiser, o valor. Enquanto a lista estiver vazia, aparece um convite
+     no lugar da faixa — nunca nomes inventados. */
+  var DOADORES = [
+    // { nome: 'Família Cardoso', valor: 'R$ 100/mês' },
+    // { nome: 'Anônimo', valor: 'R$ 50' },
+  ];
+
+  var trilho = document.getElementById('doadoresTrilho');
+  if (trilho) {
+    if (!DOADORES.length) {
+      var vazio = document.createElement('p');
+      vazio.className = 'doadores-ticker__vazio';
+      vazio.textContent = 'Seja a primeira pessoa a apoiar esta casa — seu nome pode aparecer aqui.';
+      trilho.parentElement.replaceChild(vazio, trilho);
+    } else {
+      // a lista é duplicada uma vez, lado a lado, para a rolagem em CSS
+      // (translateX de -50%) dar a volta sem deixar um "buraco" no meio
+      var listaDobrada = DOADORES.concat(DOADORES);
+      listaDobrada.forEach(function (d) {
+        var item = document.createElement('span');
+        item.className = 'doadores-item';
+        var nome = document.createElement('strong');
+        nome.textContent = d.nome;
+        item.appendChild(nome);
+        if (d.valor) item.appendChild(document.createTextNode(' — ' + d.valor));
+        trilho.appendChild(item);
+      });
+    }
+  }
+
   /* --- membro apoiador (Pix recorrente ou cartão): abre o WhatsApp com a
      escolha pronta, até a congregação configurar um gateway de pagamento --- */
   var painelApoiador = document.querySelector('.apoiador-painel');

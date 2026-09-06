@@ -558,6 +558,37 @@ body.menu-open .overlay nav a{opacity:1;transform:none}
 .apoiador-aviso{margin:1rem 0 0;text-align:center;font-size:.85rem;color:var(--muted);min-height:1.2em}
 .apoiador-aviso.apoiador-aviso--erro{color:#d98c8c}
 
+/* --- faixa de membros apoiadores (estilo "doadores em destaque") --- */
+.doadores-ticker{
+  margin:2.2rem auto 0;max-width:56rem;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1rem 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.doadores-ticker__trilho{
+  display:flex;align-items:baseline;gap:2.6rem;width:max-content;
+  animation:doadores-rolar 34s linear infinite;
+}
+.doadores-ticker:hover .doadores-ticker__trilho{animation-play-state:paused}
+.doadores-ticker__vazio{
+  margin:0;text-align:center;font-size:.85rem;color:var(--muted);
+  padding:0 1.5rem;width:100%;
+}
+.doadores-item{
+  display:inline-flex;align-items:baseline;gap:.5rem;white-space:nowrap;
+  font-family:var(--sans);font-size:.82rem;color:rgba(235,235,235,.75);
+}
+.doadores-item::before{content:"♥";color:var(--gold);font-size:.68rem;position:relative;top:-1px}
+.doadores-item strong{color:var(--gold);font-weight:600;font-family:var(--serif);font-size:1.05em}
+@keyframes doadores-rolar{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media (prefers-reduced-motion: reduce){
+  .doadores-ticker__trilho{animation:none;flex-wrap:wrap;justify-content:center;gap:1rem 2rem}
+}
+
 /* --- select "premium": mesma linguagem visual em toda a página --- */
 .campo-select{position:relative}
 .campo-select::after{

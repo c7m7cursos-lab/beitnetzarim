@@ -809,7 +809,9 @@ html.js-reveal .reveal.in{opacity:1;transform:none}
 }
 
 /* --- Tzedaká: Pix --- */
-.pix-painel{max-width:26rem;margin:2.4rem auto 0;text-align:center}
+.pix-painel{max-width:46rem;margin:2.4rem auto 0;text-align:center;display:grid;grid-template-columns:1fr 1fr;gap:3rem 2.5rem;align-items:start}
+.pix-coluna .apoiador-rotulo{margin-top:0}
+@media(max-width:720px){.pix-painel{grid-template-columns:1fr;max-width:26rem}}
 .pix-painel__qr{display:block;margin:0 auto 1.2rem;width:200px;height:200px;background:#fff;padding:.6rem;border-radius:4px}
 .pix-painel__chave{display:flex;flex-direction:column;gap:.25rem;margin:0 0 1.4rem}
 .pix-painel__chave small{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(235,235,235,.6)}

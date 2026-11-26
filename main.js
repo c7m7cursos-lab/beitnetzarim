@@ -320,3 +320,20 @@
     });
   }
 })();
+
+/* --- Tzedaká: botões de copiar Pix --- */
+(function () {
+  var aviso = document.getElementById('pixAviso');
+  document.querySelectorAll('[data-copiar]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var texto = btn.getAttribute('data-copiar');
+      function ok() { if (aviso) aviso.textContent = 'Copiado! Cole no app do seu banco.'; }
+      function falha() { if (aviso) aviso.textContent = 'Não foi possível copiar. Selecione e copie manualmente: ' + texto; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(ok, falha);
+      } else {
+        falha();
+      }
+    });
+  });
+})();
